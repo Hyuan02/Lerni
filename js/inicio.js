@@ -1,79 +1,130 @@
-var cursor; //variavel pra armazenar o objeto do cursor
-var spriteCaixa; //variavel pra armazenar as imagens dos sprites
-var spriteEsquadro;
-var spriteBola;
-var objetoBola; //variavel pra armazenar o objeto pra interagir
-var  objetoEsquadro;
-var caixa1, caixa2, caixa3; // variavel pra armazenar os objetos das caixas
+var imgBalaoA, imgBalaoB, imgBalaoC, imgBalaoD, imgBalaoE;
+var vetorSpriteBaloes;
+var corAtual;
+var ponteiro; //variavel pra armazenar o objeto do cursor
+var baloes;
+var estado=1;
+var tempoBalao=0; 
+var baloesPegos=0;
 function preload(){
-	spriteCaixa = loadSpriteSheet("imagens/caixa.png",200,200,1); //load nos sprites com dimensoes e quantidade de frames
-	spriteBola = loadSpriteSheet("imagens/bola.png",100,100,1);
-	spriteEsquadro = loadSpriteSheet("imagens/esquadro.png",300,225,1);
+	imgBalaoA = loadImage("imagens/baloes/balao_azul.png");
+	imgBalaoB = loadImage("imagens/baloes/balao_verde.png");
+	imgBalaoC = loadImage("imagens/baloes/balao_vermelho.png");
+	imgBalaoD = loadImage("imagens/baloes/balao_amarelo.png");
+	imgBalaoE = loadImage("imagens/baloes/balao_preto.png");
+
 }
-
-
 function setup(){
-	createCanvas(windowWidth-10,windowHeight-30);
-	
-	caixa1 = createSprite(150,500); //criacao dos objetos na tela
-	caixa2 = createSprite(650,500);
-	caixa3 = createSprite(1100,500);
-	objetoBola = createSprite(150,200);
-	objetoEsquadro = createSprite(450,200);
-	cursor = createSprite(mouseX,mouseY); //criacao do objeto do cursor
-	objetoBola.addAnimation("padrao",spriteBola); //adicao das imagens nos objetos
-	objetoEsquadro.addAnimation("padrao",spriteEsquadro);
-	caixa1.addAnimation("padrao",spriteCaixa);
-	caixa2.addAnimation("padrao",spriteCaixa);
-	caixa3.addAnimation("padrao",spriteCaixa);
-	cursor.addAnimation("padrao","imagens/cursor1.png");
-	cursor.addAnimation("segurando","imagens/cursor2.png"); //adicao de outra animacao em um estado diferente
-	cursor.segurando = false;
+	baloes = new Group();
+	createCanvas(1280,720);
+	noCursor();
+	textSize(30);
+	vetorSpriteBaloes = [];
+	for(let i=0; i<5; i++){
+		baloes.add(criaBalao());
+	}
+	corAtual = Math.floor(random(4));
+	ponteiro = createSprite(mouseX,mouseY); //criacao do objeto do cursor
+	ponteiro.addAnimation("padrao","imagens/cursor1.png");
+	ponteiro.addAnimation("segurando","imagens/cursor2.png");
+	ponteiro.depth = 1000;
 }
-
-
 function draw(){
-	clear(); //limpa a tela
-	
-	cursor.position.x = mouseX; //atualiza o cursor
-	cursor.position.y = mouseY;
-	text("Teste",width/2,100);
-	//animation(caixa1,150,500);
-	text("circulo aqui",100,600);
-	//animation(caixa2,650,500);
-	text("Quadrado aqui",600,600);
-	//animation(caixa3,1100,500);
-	text("Triangulo aqui",1075,600);
-	checaCursor(); //checa o estado do cursor
-	checaMovimentacao(objetoBola); // checa a colisao do cursor com um objeto pegavel
-	checaMovimentacao(objetoEsquadro);
-	checaColisao(objetoBola,caixa1); // checa a colisao objeto com uma caixa
-	checaColisao(objetoEsquadro,caixa3);
-	drawSprites(); // desenha os sprites na tela
+	gerenciadorJogo();
 }
 
-
-function checaMovimentacao(sprite){
-	if(mouseIsPressed){
-		if(cursor.overlap(sprite)){ // se o sprite do mouse sobrepor o sprite do objeto entao ele pode pegar o objeto
-			sprite.position.x = mouseX;
-			sprite.position.y = mouseY;
+function entregaImagem(numero){
+	switch(numero){
+		case 0:
+			return imgBalaoA;
+		break;
+		case 1:
+			return imgBalaoB;
+		break;
+		case 2:
+			return imgBalaoC;
+		break;
+		case 3:
+			return imgBalaoD;
+		break;
+		default:
+			return imgBalaoE;
+		break;
+	}
+}
+function entregaPalavra(numero){
+	switch(numero){
+		case 0:
+			return "blua";
+		break;
+		case 1:
+			return "verda";
+		break;
+		case 2:
+			return "ruga";
+		break;
+		case 3:
+			return "flava";
+		break;
+		default:
+			return "nigra";
+		break;
+	}
+}
+function criaBalao(){
+	let balao = createSprite(random(400,1000),800);
+	balao.tipo = Math.floor(random(4));
+	balao.addAnimation("padrao",entregaImagem(balao.tipo));
+	balao.velocity.y = random(-2,-2.7);
+	balao.velocity.x = random(-0.5,0.5);
+	balao.lifespan = 1000;
+	balao.depth = -1000;
+	balao.onMousePressed = function(){
+		if(balao.tipo==corAtual){
+			balao.remove();
+			corAtual=Math.floor(random(4));
+			baloesPegos++;
 		}
 	}
+	return balao;
+}
+function incrementaTempo(){
+	if(tempoBalao>=45){
+		baloes.add(criaBalao());
+		tempoBalao=0;
+	}
+	tempoBalao++;
 }
 
-function checaColisao(sprite,caixa){
-	if(sprite.collide(caixa)){ //se o objeto colidir com a caixa os dois sao apagados
-		sprite.remove();
-		caixa.remove();
-	}
-}
-function checaCursor(){
+function movimentaCursor(){
+	ponteiro.position.x = mouseX; //atualiza o cursor
+	ponteiro.position.y = mouseY;
 	if(mouseIsPressed){
-		cursor.changeAnimation("segurando"); //mudanca de sprite do cursor se o mouse e pressionado
+		ponteiro.changeAnimation("segurando");
 	}
 	else{
-		cursor.changeAnimation("padrao");
-		cursor.segurando = false;
+		ponteiro.changeAnimation("padrao");
+	}
+}
+
+function gerenciadorJogo(){
+	switch(estado){
+		case 1:
+			clear();
+			movimentaCursor();
+			incrementaTempo();
+			drawSprites();
+			text(entregaPalavra(corAtual),100,100);
+			text("Balões Pegos 10/ " + baloesPegos,100,200);
+		break;
+		case 2:
+			clear();
+			textSize(70);
+			cursor();
+			text("GRATUJN!",width/2,height/2);
+		break;
+	}
+	if(baloesPegos==10){
+		estado=2;
 	}
 }
