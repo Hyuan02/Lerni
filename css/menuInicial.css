@@ -1,0 +1,26 @@
+.opcoesInicial{
+	font-family: 'Roboto';
+	font-size:40px;
+	font-weight: bold;
+	height:60px;
+	width:330px;
+	background-color:#f85145;
+	color:white;
+	border-radius:10px;
+	border-style:none;
+}
+.opcaoCapitulos{
+	font-family:'Roboto';
+	font-size:40px;
+	font-weight:bold;
+	background:none;
+	border-style:none;
+}
+
+.opcaoAtividades{
+	font-family:'Roboto';
+	font-size:40px;
+	font-weight:bold;
+	background:none;
+	border-style:none;
+}
