@@ -2,6 +2,7 @@ var opcaoInicial1, opcaoInicial2, opcaoInicial3, opcaoInicial4;
 var opcaoCapitulos1,opcaoCapitulos2,opcaoCapitulos3,opcaoCapitulos4,opcaoCapitulosVoltar;
 var opcaoAtividades1,opcaoAtividades2,opcaoAtividades3;
 var controladorPuzzle=0;
+
 function preload(){
 	spriteCaixa = loadSpriteSheet("imagens/caixa.png",200,200,1); //load nos sprites com dimensoes e quantidade de frames
 	spriteBola = loadSpriteSheet("imagens/bola.png",100,100,1);
@@ -27,7 +28,7 @@ function interfaceInicial(){
 	removeElements();
 	background(253,245,202);
 	opcaoInicial1 = createButton('INÍCIO');
-	opcaoInicial2 = createButton('NÃO SEI');
+	opcaoInicial2 = createButton('INSTRUÇÕES');
 	opcaoInicial3 = createButton('CONFIGURAÇÕES');
 	opcaoInicial4 = createButton('CRÉDITOS');
 	opcaoInicial1.addClass('opcoesInicial');

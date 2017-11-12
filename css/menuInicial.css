@@ -1,6 +1,8 @@
+@import url('../fonts/stylesheet.css');
+
 .opcoesInicial{
-	font-family: 'Roboto';
-	font-size:40px;
+	font-family: 'kidsregular';
+	font-size:30px;
 	font-weight: bold;
 	height:60px;
 	width:330px;
@@ -9,16 +11,14 @@
 	border-radius:10px;
 	border-style:none;
 }
-.opcaoCapitulos{
-	font-family:'Roboto';
-	font-size:40px;
-	font-weight:bold;
-	background:none;
-	border-style:none;
+
+.opcoesInicial:hover {
+	background-color: green;
+	border: 3px solid #f85145;
 }
 
-.opcaoAtividades{
-	font-family:'Roboto';
+.opcaoCapitulos, .opcaoAtividades{
+	font-family: 'kidsregular';
 	font-size:40px;
 	font-weight:bold;
 	background:none;

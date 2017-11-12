@@ -4,7 +4,7 @@ var spriteEsquadro;
 var spriteBola;
 var objetoBola; //variavel pra armazenar o objeto pra interagir
 var  objetoEsquadro;
-var caixa1, caixa2, caixa3; // variavel pra armazenar os objetos das caixas
+var caixa1, caixa2, caixa3; // variavel pra armazenar os objetos das caixasS
 
 
 
@@ -34,7 +34,6 @@ var caixa1, caixa2, caixa3; // variavel pra armazenar os objetos das caixas
 	checaColisao(objetoEsquadro,caixa3);
 	drawSprites(); // desenha os sprites na tela
 }*/
-
 
 function checaMovimentacao(sprite){
 	if(mouseIsPressed){
