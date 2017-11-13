@@ -2,6 +2,7 @@ var opcaoInicial1, opcaoInicial2, opcaoInicial3, opcaoInicial4;
 var opcaoCapitulos1,opcaoCapitulos2,opcaoCapitulos3,opcaoCapitulos4,opcaoCapitulosVoltar;
 var opcaoAtividades1,opcaoAtividades2,opcaoAtividades3;
 var controladorPuzzle=0;
+var imagemInicial;
 
 function preload(){
 	spriteCaixa = loadSpriteSheet("imagens/caixa.png",200,200,1); //load nos sprites com dimensoes e quantidade de frames
@@ -12,6 +13,7 @@ function preload(){
 	imgBalaoC = loadImage("imagens/baloes/balao_vermelho.png");
 	imgBalaoD = loadImage("imagens/baloes/balao_amarelo.png");
 	imgBalaoE = loadImage("imagens/baloes/balao_preto.png");
+	imagemInicial = loadImage("imagens/menu-principal.png");
 }
 
 function setup(){
@@ -26,7 +28,7 @@ function draw(){
 
 function interfaceInicial(){
 	removeElements();
-	background(253,245,202);
+	image(imagemInicial,0,0,width,height);
 	opcaoInicial1 = createButton('INÍCIO');
 	opcaoInicial2 = createButton('INSTRUÇÕES');
 	opcaoInicial3 = createButton('CONFIGURAÇÕES');
