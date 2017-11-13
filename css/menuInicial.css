@@ -1,7 +1,7 @@
 @import url('../fonts/stylesheet.css');
 
 .opcoesInicial{
-	font-family: 'kidsregular';
+	font-family: 'luckiest_guyregular';
 	font-size:30px;
 	font-weight: bold;
 	height:60px;
@@ -18,7 +18,7 @@
 }
 
 .opcaoCapitulos, .opcaoAtividades{
-	font-family: 'kidsregular';
+	font-family: 'luckiest_guyregular';
 	font-size:40px;
 	font-weight:bold;
 	background:none;
