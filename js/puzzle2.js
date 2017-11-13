@@ -6,7 +6,7 @@ var baloes;
 var estado=1;
 var tempoBalao=0; 
 var baloesPegos=0;
-
+var velocidadeY=-2.0;
 
 function entregaImagem(numero){
 	switch(numero){
@@ -50,8 +50,9 @@ function criaBalao(){
 	let balao = createSprite(random(400,1000),800);
 	balao.tipo = Math.floor(random(4));
 	balao.addAnimation("padrao",entregaImagem(balao.tipo));
-	balao.velocity.y = random(-2,-2.7);
-	balao.velocity.x = random(-0.5,0.5);
+	velocidade(baloesPegos);
+	balao.velocity.y = velocidadeY;
+	balao.velocity.x = random(-0.5,0.5); 
 	balao.lifespan = 1000;
 	balao.depth = -1000;
 	balao.onMousePressed = function(){
@@ -90,16 +91,16 @@ function desenhadorPuzzleDois(){
 			incrementaTempo();
 			drawSprites();
 			text(entregaPalavra(corAtual),100,100);
-			text("Balões Pegos 10/ " + baloesPegos,100,200);
+			text("Balões Pegos 20/ " + baloesPegos,100,200);
 		break;
 		case 2:
 			clear();
 			textSize(70);
 			cursor();
-			text("GRATUJN!",width/2,height/2);
+			text("GRATULOJN!",width/2,height/2);
 		break;
 	}
-	if(baloesPegos==10){
+	if(baloesPegos==20){
 		estado=2;
 	}
 }
@@ -117,4 +118,19 @@ function iniciaPuzzleDois(){
 	ponteiro.addAnimation("padrao","imagens/cursor1.png");
 	ponteiro.addAnimation("segurando","imagens/cursor2.png");
 	ponteiro.depth = 1000;
+}
+
+function velocidade(baloes) {
+	if (baloes>0 && baloes < 5) {
+		velocidadeY = random(-2.0,-3.0);
+	}
+	else if (baloes > 5 && baloes<10) {
+		velocidadeY = random(-3.0,-4.0);
+	}
+	else if (baloes > 10 && baloes<15) {
+		velocidadeY = random(-4.0,-5.0);
+	}
+	else if (baloes > 15) {
+		velocidadeY = random(-5.0,-6.0);
+	}
 }
