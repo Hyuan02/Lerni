@@ -64,12 +64,33 @@ function criaBalao(){
 	}
 	return balao;
 }
-function incrementaTempo(){
-	if(tempoBalao>=45){
-		baloes.add(criaBalao());
-		tempoBalao=0;
+function incrementaTempo(qtdbaloes){
+	if(qtdbaloes>=0 && qtdbaloes<5){
+		if(tempoBalao>=45){
+			baloes.add(criaBalao());
+			tempoBalao=0;
+		}
+	}
+	else if(qtdbaloes>=5 && qtdbaloes<10){
+		if(tempoBalao>=40){
+			baloes.add(criaBalao());
+			tempoBalao=0;
+		}
+	}
+	else if(qtdbaloes>=10 && qtdbaloes<15){
+		if(tempoBalao>=35){
+			baloes.add(criaBalao());
+			tempoBalao=0;
+		}
+	}
+	else if(qtdbaloes>=15){
+		if(tempoBalao>=30){
+			baloes.add(criaBalao());
+			tempoBalao=0;
+		}
 	}
 	tempoBalao++;
+
 }
 
 function movimentaCursor(){
@@ -88,7 +109,7 @@ function desenhadorPuzzleDois(){
 		case 1:
 			clear();
 			movimentaCursor();
-			incrementaTempo();
+			incrementaTempo(baloesPegos);
 			drawSprites();
 			text(entregaPalavra(corAtual),100,100);
 			text("Balões Pegos 20/ " + baloesPegos,100,200);

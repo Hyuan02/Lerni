@@ -22,3 +22,7 @@
 	background:none;
 	border-style:none;
 }
+
+.opcaoCapitulos:hover, .opcaoAtividades:hover{
+	color:#f85145;
+}
