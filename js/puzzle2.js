@@ -22,8 +22,14 @@ function entregaImagem(numero){
 		case 3:
 			return imgBalaoD;
 		break;
-		default:
+		case 4:
 			return imgBalaoE;
+		break;
+		case 5:
+			return imgBalaoF;
+		break;
+		default:
+			return imgBalaoG;
 		break;
 	}
 }
@@ -36,10 +42,16 @@ function entregaPalavra(numero){
 			return "verda";
 		break;
 		case 2:
-			return "ruga";
+			return "ruĝa";
 		break;
 		case 3:
 			return "flava";
+		break;
+		case 4:
+			return "roza";
+		break;
+		case 5:
+			return "purpura";
 		break;
 		default:
 			return "nigra";
@@ -48,7 +60,7 @@ function entregaPalavra(numero){
 }
 function criaBalao(){
 	let balao = createSprite(random(400,1000),800);
-	balao.tipo = Math.floor(random(4));
+	balao.tipo = Math.floor(random(6));
 	balao.addAnimation("padrao",entregaImagem(balao.tipo));
 	velocidade(baloesPegos);
 	balao.velocity.y = velocidadeY;
@@ -72,19 +84,19 @@ function incrementaTempo(qtdbaloes){
 		}
 	}
 	else if(qtdbaloes>=5 && qtdbaloes<10){
-		if(tempoBalao>=40){
-			baloes.add(criaBalao());
-			tempoBalao=0;
-		}
-	}
-	else if(qtdbaloes>=10 && qtdbaloes<15){
 		if(tempoBalao>=35){
 			baloes.add(criaBalao());
 			tempoBalao=0;
 		}
 	}
+	else if(qtdbaloes>=10 && qtdbaloes<15){
+		if(tempoBalao>=25){
+			baloes.add(criaBalao());
+			tempoBalao=0;
+		}
+	}
 	else if(qtdbaloes>=15){
-		if(tempoBalao>=30){
+		if(tempoBalao>=15){
 			baloes.add(criaBalao());
 			tempoBalao=0;
 		}

@@ -35,7 +35,7 @@ function entregaPalavraPuzzle3(numero){
 			return "verda";
 		break;
 		case 2:
-			return "ruga";
+			return "ruĝa";
 		break;
 		case 3:
 			return "flava";
