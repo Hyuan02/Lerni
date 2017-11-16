@@ -14,6 +14,11 @@ function preload(){
 	imgBalaoC = loadImage("imagens/baloes/balao_vermelho.png");
 	imgBalaoD = loadImage("imagens/baloes/balao_amarelo.png");
 	imgBalaoE = loadImage("imagens/baloes/balao_preto.png");
+	imgflorA = loadImage("imagens/baloes/balao_azul.png");
+	imgflorB = loadImage("imagens/baloes/balao_verde.png");
+	imgflorC = loadImage("imagens/baloes/balao_vermelho.png");
+	imgflorD = loadImage("imagens/baloes/balao_amarelo.png");
+	imgflorE = loadImage("imagens/baloes/balao_preto.png");
 	imagemInicial = loadImage("imagens/menu-principal.png");
 	imagemCapitulos = loadImage("imagens/menu-capitulos.png");
 	imagemFases1 = loadImage("imagens/menu-fases1.png");
@@ -60,6 +65,9 @@ function interfaceCapitulos(){
 	opcaoCapitulos2.addClass('opcaoCapitulos');
 	opcaoCapitulos3.addClass('opcaoCapitulos');
 	opcaoCapitulos4.addClass('opcaoCapitulos');
+	opcaoCapitulos2.attribute('disabled','');
+	opcaoCapitulos3.attribute('disabled','');
+	opcaoCapitulos4.attribute('disabled','');
 	opcaoCapitulosVoltar.addClass('opcaoCapitulos');
 	opcaoCapitulos1.position(300,200);
 	opcaoCapitulos2.position(300,300);
@@ -88,6 +96,7 @@ function interfaceCapitulo1(){
 	opcaoAtividadesVoltar.position(128,450);
 	opcaoAtividades1.mousePressed(iniciadorPuzzleUm);
 	opcaoAtividades2.mousePressed(iniciadorPuzzleDois);
+	opcaoAtividades3.mousePressed(iniciadorPuzzleTres);
 	opcaoAtividadesVoltar.mousePressed(interfaceCapitulos);
 
 }
@@ -99,6 +108,10 @@ function iniciadorPuzzleDois(){
 	iniciaPuzzleDois();
 	controladorPuzzle = 2;
 }
+function iniciadorPuzzleTres(){
+	iniciaPuzzleTres();
+	controladorPuzzle = 3;
+}
 function quadroPuzzles(puzzle){
 	switch(puzzle){
 		case 0:
@@ -108,6 +121,9 @@ function quadroPuzzles(puzzle){
 		break;
 		case 2:
 			desenhadorPuzzleDois();
+		break;
+		case 3:
+			desenhadorPuzzleTres();
 		break;
 	}
 }
