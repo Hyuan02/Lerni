@@ -21,33 +21,63 @@ function entregaImagemPuzzleTres(numero){
 		case 3:
 			return imgflorD;
 		break;
-		default:
+		case 4:
 			return imgflorE;
+		break;
+		case 5:
+			return imgflorF;
+		break;
+		case 6:
+			return imgflorG;
+		break;
+		case 7:
+			return imgflorH;
+		break;
+		case 8:
+			return imgflorI;
+		break;
+		case 9:
+			return imgflorJ;
 		break;
 	}
 }
 function entregaPalavraPuzzle3(numero){
 	switch(numero){
 		case 0:
-			return "blua";
+			return "unu";
 		break;
 		case 1:
-			return "verda";
+			return "du";
 		break;
 		case 2:
-			return "ruĝa";
+			return "tri";
 		break;
 		case 3:
-			return "flava";
+			return "kvard";
 		break;
-		default:
-			return "nigra";
+		case 4:
+			return "kvi";
+		break;
+		case 5:
+			return "ses";
+		break;
+		case 6:
+			return "sep";
+		break;
+		case 7:
+			return "ok";
+		break;
+		case 8:
+			return "naŭ";
+		break;
+		case 9:
+			return "kvard";
 		break;
 	}
 }
 function criaFlor(){
 	let flor = createSprite(width+100,random(200,500));
-	flor.tipo = Math.floor(random(4));
+	flor.tipo = Math.floor(random(10));
 	flor.addAnimation("padrao",entregaImagemPuzzleTres(flor.tipo));
 	velocidade(FloresPegas);
 	flor.velocity.y = random(-0.5,0.5);
@@ -132,7 +162,7 @@ function iniciaPuzzleTres(){
 	for(let i=0; i<5; i++){
 		flores.add(criaFlor());
 	}
-	corAtual = Math.floor(random(4));
+	corAtual = Math.floor(random(10));
 	ponteiro = createSprite(mouseX,mouseY); //criacao do objeto do cursor
 	ponteiro.addAnimation("padrao","imagens/cursor1.png");
 	ponteiro.addAnimation("segurando","imagens/cursor2.png");
