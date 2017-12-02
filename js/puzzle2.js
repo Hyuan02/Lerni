@@ -1,7 +1,6 @@
 var imgBalaoA, imgBalaoB, imgBalaoC, imgBalaoD, imgBalaoE;
 var vetorSpriteBaloes;
 var corAtual;
-var ponteiro; //variavel pra armazenar o objeto do cursor
 var baloes;
 var estado=1;
 var tempoBalao=0; 
@@ -105,26 +104,14 @@ function incrementaTempo(qtdbaloes){
 
 }
 
-function movimentaCursor(){
-	ponteiro.position.x = mouseX; //atualiza o cursor
-	ponteiro.position.y = mouseY;
-	if(mouseIsPressed){
-		ponteiro.changeAnimation("segurando");
-	}
-	else{
-		ponteiro.changeAnimation("padrao");
-	}
-}
-
 function desenhadorPuzzleDois(){
 	switch(estado){
 		case 1:
 			clear();
-			movimentaCursor();
 			incrementaTempo(baloesPegos);
 			drawSprites();
-			text(entregaPalavra(corAtual),100,100);
-			text("Balões Pegos 20/ " + baloesPegos,100,200);
+			text(entregaPalavra(corAtual),200,100);
+			text("Balões Pegos 20/ " + baloesPegos,200,200);
 		break;
 		case 2:
 			clear();
@@ -139,18 +126,17 @@ function desenhadorPuzzleDois(){
 }
 function iniciaPuzzleDois(){
 	removeElements();
+	baloesPegos = 0;
+	tempoBalao = 0;
+	estado = 1;
+	velocidadeY = -2.0;
 	baloes = new Group();
-	noCursor();
 	textSize(30);
 	vetorSpriteBaloes = [];
 	for(let i=0; i<5; i++){
 		baloes.add(criaBalao());
 	}
 	corAtual = Math.floor(random(4));
-	ponteiro = createSprite(mouseX,mouseY); //criacao do objeto do cursor
-	ponteiro.addAnimation("padrao","imagens/cursor1.png");
-	ponteiro.addAnimation("segurando","imagens/cursor2.png");
-	ponteiro.depth = 1000;
 }
 
 function velocidade(baloes) {

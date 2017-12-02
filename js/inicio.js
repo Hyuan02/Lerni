@@ -1,10 +1,15 @@
 var opcaoInicial1, opcaoInicial2, opcaoInicial3, opcaoInicial4;
 var opcaoCapitulos1,opcaoCapitulos2,opcaoCapitulos3,opcaoCapitulos4,opcaoCapitulosVoltar;
 var opcaoAtividades1,opcaoAtividades2,opcaoAtividades3,opcaoAtividadesVoltar;
+var opcaoPuzzle1, opcaoPuzzleVoltar;
 var controladorPuzzle=0;
 var imagemInicial;
 var imagemCapitulos;
 var imagemFases1;
+var imagemPuzzles,imagemRevisao;
+var botaoRevisaoAvancar,botaoRevisaoVoltar,botaoRevisaoFechar,tituloRevisao, conteudoRevisao;
+var imagemAtual;
+var ponteiro, imgPonteiro1, imgPonteiro2;
 function preload(){
 	spriteCaixa = loadSpriteSheet("imagens/caixa.png",200,200,1); //load nos sprites com dimensoes e quantidade de frames
 	spriteBola = loadSpriteSheet("imagens/bola.png",100,100,1);
@@ -29,6 +34,9 @@ function preload(){
 	imagemInicial = loadImage("imagens/menu-principal.png");
 	imagemCapitulos = loadImage("imagens/menu-capitulos.png");
 	imagemFases1 = loadImage("imagens/menu-fases1.png");
+	imgPonteiro1 = loadImage("imagens/cursor1.png");
+	imgPonteiro2 = loadImage("imagens/cursor2.png");
+	imagemPuzzles = loadImage("imagens/menu-puzzles.png");
 }
 
 function setup(){
@@ -80,13 +88,14 @@ function interfaceCapitulos(){
 	opcaoCapitulos2.position(300,300);
 	opcaoCapitulos3.position(800,200);
 	opcaoCapitulos4.position(800,300);
-	opcaoCapitulosVoltar.position(1140,100);
+	opcaoCapitulosVoltar.position(10,600);
 	opcaoCapitulosVoltar.mousePressed(interfaceInicial);
 	opcaoCapitulos1.mousePressed(interfaceCapitulo1);
 }
 
 function interfaceCapitulo1(){
 	removeElements();
+	limpaSprites();
 	background(240,240,250);
 	image(imagemFases1,0,0,width,height);
 	opcaoAtividades1 = createButton('1');
@@ -109,14 +118,22 @@ function interfaceCapitulo1(){
 }
 function iniciadorPuzzleUm(){
 	iniciaPuzzleUm();
+	iniciaInterfacePuzzle();
+	iniciaCursor();
 	controladorPuzzle = 1;
+	
 }
 function iniciadorPuzzleDois(){
 	iniciaPuzzleDois();
+	iniciaInterfacePuzzle();
+	iniciaCursor();
 	controladorPuzzle = 2;
+	
 }
 function iniciadorPuzzleTres(){
 	iniciaPuzzleTres();
+	iniciaInterfacePuzzle();
+	iniciaCursor();
 	controladorPuzzle = 3;
 }
 function quadroPuzzles(puzzle){
@@ -125,12 +142,114 @@ function quadroPuzzles(puzzle){
 		break;
 		case 1:
 			desenhadorPuzzleUm();
+			desenhaInterfacePuzzle();
+			movimentaCursor();
 		break;
 		case 2:
 			desenhadorPuzzleDois();
+			desenhaInterfacePuzzle();
+			movimentaCursor();
 		break;
 		case 3:
 			desenhadorPuzzleTres();
+			desenhaInterfacePuzzle();
+			movimentaCursor();
 		break;
 	}
+}
+function voltaCapitulo(){
+	cursor();
+	controladorPuzzle = 0;
+	interfaceCapitulo1();
+}
+function desenhaInterfacePuzzle(){
+	image(imagemPuzzles,0,0,1280,720);
+}
+function iniciaInterfacePuzzle(){
+	opcaoPuzzle1 = createButton('Revizio');
+	opcaoPuzzle1.position(25,100);
+	opcaoPuzzleVoltar = createButton('Voltar');
+	opcaoPuzzleVoltar.position(25,600);
+	opcaoPuzzle1.addClass('opcaoInterfacePuzzle');
+	opcaoPuzzleVoltar.addClass('opcaoInterfacePuzzle');
+	opcaoPuzzle1.addClass('opcaoInterfacePuzzle1');
+	opcaoPuzzleVoltar.addClass('opcaoInterfacePuzzleVoltar');
+	opcaoPuzzleVoltar.mousePressed(voltaCapitulo);
+	opcaoPuzzle1.mousePressed(interfaceRevisao);
+}
+function iniciaCursor(){
+	noCursor();
+	ponteiro = createSprite(mouseX,mouseY);
+	ponteiro.addAnimation("padrao",imgPonteiro1);
+	ponteiro.addAnimation("segurando",imgPonteiro2);
+	ponteiro.depth = 1000;	
+}
+function movimentaCursor(){
+	ponteiro.position.x = mouseX; //atualiza o cursor
+	ponteiro.position.y = mouseY;
+	if(mouseIsPressed){
+		ponteiro.changeAnimation("segurando");
+	}
+	else{
+		ponteiro.changeAnimation("padrao");
+	}
+	drawSprite(ponteiro);
+}
+function limpaSprites(){
+	for(let i=0; i<allSprites.length; i++){
+		allSprites[i].visible = false;
+	}
+	for(let i=0; i<allSprites.length; i++){
+		allSprites[i].remove();
+	}
+	print(allSprites.length);
+}
+function interfaceRevisao(){
+	let fechar = function (){
+		imagemRevisao.remove();
+		botaoRevisaoFechar.remove();
+		tituloRevisao.remove();
+		conteudoRevisao.remove();
+	}
+	imagemRevisao = createImg("imagens/cartao-informativo.png");
+	imagemRevisao.style('width',width+'px');
+	imagemRevisao.style('height',height+'px');
+	imagemRevisao.position(0,30);
+	botaoRevisaoFechar = createButton('X');
+	botaoRevisaoFechar.position(920,35);
+	botaoRevisaoFechar.addClass('revisaoFechar');
+	botaoRevisaoFechar.mousePressed(fechar);
+	tituloRevisao = createSpan('Revizio');
+	tituloRevisao.addClass('tituloRevisao');
+	tituloRevisao.position(550,60);
+	let conteudo;
+	switch(controladorPuzzle){
+		case 1:
+			conteudo = "<p>Lorem ipsum dolor sit amet,<br/> consectetur adipisicing elit, sed do eiusmod<br/>" +
+				"tempor incididunt ut labore <br/>et dolore magna aliqua. Ut enim ad minim veniam,<br/>" +
+				"quis nostrud exercitation ullamco laboris<br/> nisi ut aliquip ex ea commodo<br/>" +
+				"consequat. Duis aute irure dolor in reprehenderit<br/> in voluptate velit esse<br/>" +
+				"cillum dolore eu fugiat nulla pariatur<br/>. Excepteur sint occaecat cupidatat non<br/>" +
+				"proident, sunt in culpa qui officia deserunt<br/> mollit anim id est laborum.</p>"
+		break;
+		case 2:
+			conteudo = "<p>Lorem ipsum dolor sit amet,<br/> consectetur adipisicing elit, sed do eiusmod<br/>" +
+				"tempor incididunt ut labore <br/>et dolore magna aliqua. Ut enim ad minim veniam,<br/>" +
+				"quis nostrud exercitation ullamco laboris<br/> nisi ut aliquip ex ea commodo<br/>" +
+				"consequat. Duis aute irure dolor in reprehenderit<br/> in voluptate velit esse<br/>" +
+				"cillum dolore eu fugiat nulla pariatur<br/>. Excepteur sint occaecat cupidatat non<br/>" +
+				"proident, sunt in culpa qui officia deserunt<br/> mollit anim id est laborum.</p>"
+		break;
+		case 3:
+			conteudo = "<p>Lorem ipsum dolor sit amet,<br/> consectetur adipisicing elit, sed do eiusmod<br/>" +
+				"tempor incididunt ut labore <br/>et dolore magna aliqua. Ut enim ad minim veniam,<br/>" +
+				"quis nostrud exercitation ullamco laboris<br/> nisi ut aliquip ex ea commodo<br/>" +
+				"consequat. Duis aute irure dolor in reprehenderit<br/> in voluptate velit esse<br/>" +
+				"cillum dolore eu fugiat nulla pariatur<br/>. Excepteur sint occaecat cupidatat non<br/>" +
+				"proident, sunt in culpa qui officia deserunt<br/> mollit anim id est laborum.</p>"
+		break;
+	}
+	conteudoRevisao = createSpan(conteudo);
+	conteudoRevisao.position(450,150);
+	conteudoRevisao.addClass('ConteudoRevisao');
 }

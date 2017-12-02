@@ -74,3 +74,34 @@
   	-ms-transform: scale(1.1) rotate(-16deg); /* IE 9 */
     -moz-transform: scale(1.1) rotate(-16deg);
 }
+.opcaoInterfacePuzzle{
+	background:none;
+	border:none;
+	font-family:'luckiest_guyregular';
+	font-size:40px;
+}
+.opcaoInterfacePuzzleVoltar{
+	color:#01689a;
+}
+.opcaoInterfacePuzzle1{
+	color:#ffeb94;
+}
+.revisaoFechar{
+	background-color:#ffccc5;
+	color:#cb1f05;
+	border:none;
+	width:40px;
+	height:60px;
+	font-family:'luckiest_guyregular';
+	font-size:40px;
+}
+.tituloRevisao{
+	font-family:'luckiest_guyregular';
+	background:none;
+	color:#3d8100;
+	font-size:60px;
+}
+.conteudoRevisao{
+	font-family:'kidsregular';
+	font-size:20px;
+}

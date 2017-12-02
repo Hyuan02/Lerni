@@ -1,6 +1,5 @@
 var imgflorA, imgflorB, imgflorC, imgflorD, imgflorE;
 var corAtual;
-var ponteiro; //variavel pra armazenar o objeto do cursor
 var flores;
 var estado=1;
 var tempoFlor=0; 
@@ -122,31 +121,19 @@ function incrementaTempoPuzzle3(qtdflores){
 
 }
 
-function movimentaCursor(){
-	ponteiro.position.x = mouseX; //atualiza o cursor
-	ponteiro.position.y = mouseY;
-	if(mouseIsPressed){
-		ponteiro.changeAnimation("segurando");
-	}
-	else{
-		ponteiro.changeAnimation("padrao");
-	}
-}
 
 function desenhadorPuzzleTres(){
 	switch(estado){
 		case 1:
 			clear();
-			movimentaCursor();
 			incrementaTempoPuzzle3(FloresPegas);
 			drawSprites();
-			text(entregaPalavraPuzzle3(corAtual),100,100);
-			text("Flores Pegos 20/ " + FloresPegas,100,200);
+			text(entregaPalavraPuzzle3(corAtual),200,100);
+			text("Flores Pegos 20/ " + FloresPegas,200,200);
 		break;
 		case 2:
 			clear();
 			textSize(70);
-			cursor();
 			text("GRATULOJN!",width/2,height/2);
 		break;
 	}
@@ -155,18 +142,17 @@ function desenhadorPuzzleTres(){
 	}
 }
 function iniciaPuzzleTres(){
+	estado=1;
+	tempoFlor=0; 
+	FloresPegas=0;
+	velocidadeX=-2.0;
 	removeElements();
 	flores = new Group();
-	noCursor();
 	textSize(30);
 	for(let i=0; i<5; i++){
 		flores.add(criaFlor());
 	}
 	corAtual = Math.floor(random(10));
-	ponteiro = createSprite(mouseX,mouseY); //criacao do objeto do cursor
-	ponteiro.addAnimation("padrao","imagens/cursor1.png");
-	ponteiro.addAnimation("segurando","imagens/cursor2.png");
-	ponteiro.depth = 1000;
 }
 
 function velocidade(qtdflores) {
