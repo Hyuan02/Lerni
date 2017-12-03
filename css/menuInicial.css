@@ -1,10 +1,13 @@
 @import url('../fonts/stylesheet.css');
 
+canvas{
+	margin-top:-1%;
+	margin-left:-1%;
+}
+
 .opcoesInicial{
 	font-family: 'luckiest_guyregular';
-	font-size:30px;
-	height:60px;
-	width:330px;
+	font-size:2rem;
 	background-color: #f85145;
 	color:white;
 	border-radius:10px;
@@ -18,7 +21,7 @@
 
 .opcaoCapitulos, .opcaoAtividades {
 	font-family: 'luckiest_guyregular';
-	font-size:40px;
+	font-size:2.5em;
 	background:none;
 	border-style:none;
 	-webkit-transition-duration: 0.3s;
@@ -29,7 +32,7 @@
 
 .opcaoAtividadesFase {
 	font-family: 'luckiest_guyregular';
-	font-size:55px;
+	font-size:3em;
 	background:none;
 	color: #1b5e20;
 	border-style:none;
@@ -47,7 +50,7 @@
     -webkit-transform: rotate(-16deg); /* Chrome, Safari, Opera */
     -moz-transform: rotate(-16deg);
     transform: rotate(-16deg);
-    font-size: 65px;
+    font-size: 4em;
     color: #3e2723;
     -webkit-transition-duration: 0.3s;
   	transition-duration: 0.3s;
@@ -78,7 +81,7 @@
 	background:none;
 	border:none;
 	font-family:'luckiest_guyregular';
-	font-size:40px;
+	font-size:2.5em;
 }
 .opcaoInterfacePuzzleVoltar{
 	color:#01689a;
@@ -90,18 +93,16 @@
 	background-color:#ffccc5;
 	color:#cb1f05;
 	border:none;
-	width:40px;
-	height:60px;
 	font-family:'luckiest_guyregular';
-	font-size:40px;
+	font-size:2.5em;
 }
 .tituloRevisao{
 	font-family:'luckiest_guyregular';
 	background:none;
 	color:#3d8100;
-	font-size:60px;
+	font-size:3.5em;
 }
 .conteudoRevisao{
 	font-family:'kidsregular';
-	font-size:20px;
+	font-size:1.2em;
 }

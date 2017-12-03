@@ -52,11 +52,11 @@ function checaColisao(sprite,caixa){
 
 function iniciaPuzzleUm(){
 	removeElements();
-	caixa1 = createSprite(300,500); //criacao dos objetos na tela
-	caixa2 = createSprite(650,500);
-	caixa3 = createSprite(1050,500);
-	objetoBola = createSprite(300,200);
-	objetoEsquadro = createSprite(600,200);
+	caixa1 = createSprite(proporcaoTela*4,proporcaoTelaH*11); //criacao dos objetos na tela
+	caixa2 = createSprite(proporcaoTela*8,proporcaoTelaH*11);
+	caixa3 = createSprite(proporcaoTela*13,proporcaoTelaH*11);
+	objetoBola = createSprite(proporcaoTela*4,proporcaoTelaH*4);
+	objetoEsquadro = createSprite(proporcaoTela*7,proporcaoTelaH*4);
 	objetoBola.addAnimation("padrao",spriteBola); //adicao das imagens nos objetos
 	objetoEsquadro.addAnimation("padrao",spriteEsquadro);
 	caixa1.addAnimation("padrao",spriteCaixa);
@@ -70,13 +70,13 @@ function iniciaPuzzleUm(){
 }
 function desenhadorPuzzleUm(){
 	clear(); //limpa a tela
-	text("Teste",width/2,100);
+	text("Teste",width/2,proporcaoTela*1.2);
 	//animation(caixa1,150,500);
-	text("circulo aqui",300,600);
+	text("circulo aqui",proporcaoTela*3.5,proporcaoTelaH*13);
 	//animation(caixa2,650,500);
-	text("Quadrado aqui",600,600);
+	text("Quadrado aqui",proporcaoTela*7.5,proporcaoTelaH*13);
 	//animation(caixa3,1100,500);
-	text("Triangulo aqui",1075,600);
+	text("Triangulo aqui",proporcaoTela*12.5,proporcaoTelaH*13);
 	checaMovimentacao(objetoBola); // checa a colisao do cursor com um objeto pegavel
 	checaMovimentacao(objetoEsquadro);
 	checaColisao(objetoBola,caixa1); // checa a colisao objeto com uma caixa
