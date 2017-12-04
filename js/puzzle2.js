@@ -58,7 +58,7 @@ function entregaPalavra(numero){
 	}
 }
 function criaBalao(){
-	let balao = createSprite(random(proporcaoTela*4,proporcaoTela*14),proporcaoTelaH*16);
+	let balao = createSprite(random(proporcaoTela*20,proporcaoTela*90),proporcaoTelaH*100);
 	balao.tipo = Math.floor(random(6));
 	balao.addAnimation("padrao",entregaImagem(balao.tipo));
 	velocidade(baloesPegos);
@@ -110,8 +110,8 @@ function desenhadorPuzzleDois(){
 			clear();
 			incrementaTempo(baloesPegos);
 			drawSprites();
-			text(entregaPalavra(corAtual),proporcaoTela*2.3,proporcaoTelaH*2);
-			text("Balões Pegos 20/ " + baloesPegos,proporcaoTela*2.3,proporcaoTelaH*3);
+			text(entregaPalavra(corAtual),proporcaoTela*15,proporcaoTelaH*16);
+			text("Balões Pegos 20/ " + baloesPegos,proporcaoTela*15,proporcaoTelaH*20);
 		break;
 		case 2:
 			clear();

@@ -75,7 +75,7 @@ function entregaPalavraPuzzle3(numero){
 	}
 }
 function criaFlor(){
-	let flor = createSprite(width+100,random(proporcaoTela*2,proporcaoTelaH*12));
+	let flor = createSprite(width+100,random(proporcaoTelaH*16,proporcaoTelaH*80));
 	flor.tipo = Math.floor(random(10));
 	flor.addAnimation("padrao",entregaImagemPuzzleTres(flor.tipo));
 	velocidade(FloresPegas);
@@ -128,8 +128,8 @@ function desenhadorPuzzleTres(){
 			clear();
 			incrementaTempoPuzzle3(FloresPegas);
 			drawSprites();
-			text(entregaPalavraPuzzle3(corAtual),proporcaoTela*2.3,proporcaoTelaH*2);
-			text("Flores Pegos 20/ " + FloresPegas,proporcaoTela*2.3,proporcaoTelaH*3);
+			text(entregaPalavraPuzzle3(corAtual),proporcaoTela*15,proporcaoTelaH*16);
+			text("Flores Pegos 20/ " + FloresPegas,proporcaoTela*15,proporcaoTelaH*20);
 		break;
 		case 2:
 			clear();

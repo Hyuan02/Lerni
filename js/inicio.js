@@ -42,8 +42,8 @@ function preload(){
 
 function setup(){
 	createCanvas(displayWidth,displayHeight);
-	proporcaoTela = width/16;
-	proporcaoTelaH = height/16;
+	proporcaoTela = width/100;
+	proporcaoTelaH = height/100;
 	interfaceInicial();
 }
 
@@ -63,18 +63,18 @@ function interfaceInicial(){
 	opcaoInicial2.addClass('opcoesInicial');
 	opcaoInicial3.addClass('opcoesInicial');
 	opcaoInicial4.addClass('opcoesInicial');
-	opcaoInicial1.position(proporcaoTela*11,proporcaoTelaH*5);
-	opcaoInicial2.position(proporcaoTela*11,proporcaoTelaH*7);
-	opcaoInicial3.position(proporcaoTela*11,proporcaoTelaH*9);
-	opcaoInicial4.position(proporcaoTela*11,proporcaoTelaH*11);
-	opcaoInicial1.style('width',proporcaoTela*3.9+'px');
-	opcaoInicial1.style('height',proporcaoTelaH*1.4+'px');
-	opcaoInicial2.style('width',proporcaoTela*3.9+'px');
-	opcaoInicial2.style('height',proporcaoTelaH*1.4+'px');
-	opcaoInicial3.style('width',proporcaoTela*3.9+'px');
-	opcaoInicial3.style('height',proporcaoTelaH*1.4+'px');
-	opcaoInicial4.style('width',proporcaoTela*3.9+'px');
-	opcaoInicial4.style('height',proporcaoTelaH*1.4+'px');
+	opcaoInicial1.position(proporcaoTela*68,proporcaoTelaH*30);
+	opcaoInicial2.position(proporcaoTela*68,proporcaoTelaH*42);
+	opcaoInicial3.position(proporcaoTela*68,proporcaoTelaH*54);
+	opcaoInicial4.position(proporcaoTela*68,proporcaoTelaH*66);
+	opcaoInicial1.style('width',proporcaoTela*25+'px');
+	opcaoInicial1.style('height',proporcaoTelaH*8+'px');
+	opcaoInicial2.style('width',proporcaoTela*25+'px');
+	opcaoInicial2.style('height',proporcaoTelaH*8+'px');
+	opcaoInicial3.style('width',proporcaoTela*25+'px');
+	opcaoInicial3.style('height',proporcaoTelaH*8+'px');
+	opcaoInicial4.style('width',proporcaoTela*25+'px');
+	opcaoInicial4.style('height',proporcaoTelaH*8+'px');
 	opcaoInicial1.mousePressed(interfaceCapitulos);
 }
 
@@ -95,11 +95,11 @@ function interfaceCapitulos(){
 	opcaoCapitulos3.attribute('disabled','');
 	opcaoCapitulos4.attribute('disabled','');
 	opcaoCapitulosVoltar.addClass('opcaoCapitulos');
-	opcaoCapitulos1.position(proporcaoTela*3.5,proporcaoTelaH*5);
-	opcaoCapitulos2.position(proporcaoTela*3.5,proporcaoTelaH*7);
-	opcaoCapitulos3.position(proporcaoTela*9.5,proporcaoTelaH*5);
-	opcaoCapitulos4.position(proporcaoTela*9.5,proporcaoTelaH*7);
-	opcaoCapitulosVoltar.position(proporcaoTela*0.1,proporcaoTelaH*13);
+	opcaoCapitulos1.position(proporcaoTela*20,proporcaoTelaH*25);
+	opcaoCapitulos2.position(proporcaoTela*20,proporcaoTelaH*40);
+	opcaoCapitulos3.position(proporcaoTela*60,proporcaoTelaH*25);
+	opcaoCapitulos4.position(proporcaoTela*60,proporcaoTelaH*40);
+	opcaoCapitulosVoltar.position(proporcaoTela*0.1,proporcaoTelaH*80);
 	opcaoCapitulosVoltar.mousePressed(interfaceInicial);
 	opcaoCapitulos1.mousePressed(interfaceCapitulo1);
 }
@@ -117,10 +117,10 @@ function interfaceCapitulo1(){
 	opcaoAtividades2.addClass('opcaoAtividadesFase');
 	opcaoAtividades3.addClass('opcaoAtividadesFase');
 	opcaoAtividadesVoltar.addClass('opcaoAtividadesVoltar');
-	opcaoAtividades1.position(proporcaoTela*4.2,proporcaoTelaH*4);
-	opcaoAtividades2.position(proporcaoTela*9,proporcaoTelaH*4.5);
-	opcaoAtividades3.position(proporcaoTela*12.5,proporcaoTelaH*8.5);
-	opcaoAtividadesVoltar.position(proporcaoTela*1.5,proporcaoTelaH*9.2);
+	opcaoAtividades1.position(proporcaoTela*27,proporcaoTelaH*25);
+	opcaoAtividades2.position(proporcaoTela*57,proporcaoTelaH*28);
+	opcaoAtividades3.position(proporcaoTela*77,proporcaoTelaH*52);
+	opcaoAtividadesVoltar.position(proporcaoTela*7,proporcaoTelaH*59);
 	opcaoAtividades1.mousePressed(iniciadorPuzzleUm);
 	opcaoAtividades2.mousePressed(iniciadorPuzzleDois);
 	opcaoAtividades3.mousePressed(iniciadorPuzzleTres);
@@ -178,9 +178,9 @@ function desenhaInterfacePuzzle(){
 }
 function iniciaInterfacePuzzle(){
 	opcaoPuzzle1 = createButton('Revizio');
-	opcaoPuzzle1.position(proporcaoTela*0.2,proporcaoTelaH*1.3);
+	opcaoPuzzle1.position(proporcaoTela*0.2,proporcaoTelaH*10);
 	opcaoPuzzleVoltar = createButton('Voltar');
-	opcaoPuzzleVoltar.position(proporcaoTela*0.2,proporcaoTelaH*12);
+	opcaoPuzzleVoltar.position(proporcaoTela*0.2,proporcaoTelaH*80);
 	opcaoPuzzle1.addClass('opcaoInterfacePuzzle');
 	opcaoPuzzleVoltar.addClass('opcaoInterfacePuzzle');
 	opcaoPuzzle1.addClass('opcaoInterfacePuzzle1');
@@ -227,14 +227,14 @@ function interfaceRevisao(){
 	imagemRevisao.style('height',height+'px');
 	imagemRevisao.position(0,0);
 	botaoRevisaoFechar = createButton('X');
-	botaoRevisaoFechar.position(proporcaoTela*11,proporcaoTelaH*0.15);
+	botaoRevisaoFechar.position(proporcaoTela*70,proporcaoTelaH*1);
 	botaoRevisaoFechar.addClass('revisaoFechar');
 	botaoRevisaoFechar.mousePressed(fechar);
-	botaoRevisaoFechar.style('width',proporcaoTela*0.5+'px');
-	botaoRevisaoFechar.style('height',proporcaoTelaH*1.3+'px');
+	botaoRevisaoFechar.style('width',proporcaoTela*3+'px');
+	botaoRevisaoFechar.style('height',proporcaoTelaH*7+'px');
 	tituloRevisao = createSpan('Revizio');
 	tituloRevisao.addClass('tituloRevisao');
-	tituloRevisao.position(proporcaoTela*7,proporcaoTelaH*1.1);
+	tituloRevisao.position(proporcaoTela*45,proporcaoTelaH*3);
 	let conteudo;
 	switch(controladorPuzzle){
 		case 1:
@@ -263,6 +263,6 @@ function interfaceRevisao(){
 		break;
 	}
 	conteudoRevisao = createSpan(conteudo);
-	conteudoRevisao.position(5.8*proporcaoTela,proporcaoTelaH*2.5);
+	conteudoRevisao.position(35*proporcaoTela,proporcaoTelaH*10);
 	conteudoRevisao.addClass('ConteudoRevisao');
 }
