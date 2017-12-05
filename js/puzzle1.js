@@ -1,85 +1,147 @@
-var spriteCaixa; //variavel pra armazenar as imagens dos sprites
-var spriteEsquadro;
-var spriteBola;
-var objetoBola; //variavel pra armazenar o objeto pra interagir
-var  objetoEsquadro;
-var caixa1, caixa2, caixa3; // variavel pra armazenar os objetos das caixasS
+var cenario,objeto1,objeto2,objeto3,objeto4,objeto5,objeto6,objeto7,objeto8,objeto9,objeto10,objeto11,objeto12;
+var camada01,camada02,camada03,camada04,camada05;
+var layer01,layer02,layer03,layer04,layer05;
+var item01,item02,item03,item04,item05,item06,item07,item08,item09,item10,item11,item12;
+var escala,escala2;
+var itens;
+var caixa,imgCaixa;
+function retornaEscala(resolucao){
+	let decremento = resolucao - 14*proporcaoTela;
+	return decremento/1920;
+}
 
-
-
-/*function setup(){
-	//noCursor();
-	//createCanvas(1280,720);
-	//iniciaPuzzleUm();
-}*/
-
-
-/*function draw(){
-	clear(); //limpa a tela
-	
-	cursor.position.x = mouseX; //atualiza o cursor
-	cursor.position.y = mouseY;
-	text("Teste",width/2,100);
-	//animation(caixa1,150,500);
-	text("circulo aqui",100,600);
-	//animation(caixa2,650,500);
-	text("Quadrado aqui",600,600);
-	//animation(caixa3,1100,500);
-	text("Triangulo aqui",1075,600);
-	checaCursor(); //checa o estado do cursor
-	checaMovimentacao(objetoBola); // checa a colisao do cursor com um objeto pegavel
-	checaMovimentacao(objetoEsquadro);
-	checaColisao(objetoBola,caixa1); // checa a colisao objeto com uma caixa
-	checaColisao(objetoEsquadro,caixa3);
-	drawSprites(); // desenha os sprites na tela
-}*/
-
-function checaMovimentacao(sprite){
+function checaMovimentacao(item){
 	if(mouseIsPressed){
-		if(ponteiro.overlap(sprite)){ // se o sprite do mouse sobrepor o sprite do objeto entao ele pode pegar o objeto
-			sprite.position.x = mouseX;
-			sprite.position.y = mouseY;
+			if(ponteiro.overlap(item)){
+				caixa.visible = true;
+				if(!item.bloqueado){
+					item.segurando = true;
+					item.position.x = mouseX;
+					item.position.y = mouseY;
+					item.depth = 1000;
+					for(let i=0; i<itens.length; i++){
+						if(!itens[i].segurando){
+							itens[i].bloqueado = true;
+						}
+					}
+				}
+			}
+	}
+	else{
+		caixa.visible = false;
+		for(let i=0; i<itens.length; i++){
+			if(itens[i].segurando){
+				itens[i].segurando = false;
+			}
+			else{
+				itens[i].bloqueado = false;
+			}
+			itens[i].depth = 1;
 		}
+
 	}
 }
-
-function checaColisao(sprite,caixa){
-	if(sprite.collide(caixa)){ //se o objeto colidir com a caixa os dois sao apagados
-		sprite.remove();
-		caixa.remove();
-	}
+function checaColisao(sprite){
+	if(sprite.segurando){
+			if(caixa.overlap(sprite)){
+				sprite.remove();
+			}
+		}
 }
-
 function iniciaPuzzleUm(){
 	removeElements();
-	caixa1 = createSprite(proporcaoTela*4,proporcaoTelaH*11); //criacao dos objetos na tela
-	caixa2 = createSprite(proporcaoTela*8,proporcaoTelaH*11);
-	caixa3 = createSprite(proporcaoTela*13,proporcaoTelaH*11);
-	objetoBola = createSprite(proporcaoTela*4,proporcaoTelaH*4);
-	objetoEsquadro = createSprite(proporcaoTela*7,proporcaoTelaH*4);
-	objetoBola.addAnimation("padrao",spriteBola); //adicao das imagens nos objetos
-	objetoEsquadro.addAnimation("padrao",spriteEsquadro);
-	caixa1.addAnimation("padrao",spriteCaixa);
-	caixa2.addAnimation("padrao",spriteCaixa);
-	caixa3.addAnimation("padrao",spriteCaixa);
-	caixa1.depth = -100;
-	caixa2.depth = -100;
-	caixa3.depth = -100;
-	objetoBola.depth = -100;
-	objetoEsquadro.depth = -100;
+	escala = retornaEscala(width);
+	criaObjetos();
 }
 function desenhadorPuzzleUm(){
 	clear(); //limpa a tela
-	text("Teste",width/2,proporcaoTela*1.2);
-	//animation(caixa1,150,500);
-	text("circulo aqui",proporcaoTela*3.5,proporcaoTelaH*13);
-	//animation(caixa2,650,500);
-	text("Quadrado aqui",proporcaoTela*7.5,proporcaoTelaH*13);
-	//animation(caixa3,1100,500);
-	text("Triangulo aqui",proporcaoTela*12.5,proporcaoTelaH*13);
-	checaMovimentacao(objetoBola); // checa a colisao do cursor com um objeto pegavel
-	checaMovimentacao(objetoEsquadro);
-	checaColisao(objetoBola,caixa1); // checa a colisao objeto com uma caixa
-	checaColisao(objetoEsquadro,caixa3);
+	image(cenario,proporcaoTela*14,proporcaoTelaH*6,proporcaoTela*83,proporcaoTelaH*81);
 	drawSprites(); // desenha os sprites na tela
+	for(let i=0; i<itens.length; i++){
+		checaMovimentacao(itens[i]);
+		checaColisao(itens[i]);
+	}
+	if(itens.length<1){
+		clear();
+		textSize(70);
+		text("GRATULOJN!",width/2,height/2);
+	}
+}
+function criaObjetos(){
+	itens = new Group();
+	item01 = createSprite(proporcaoTela*75,proporcaoTelaH*28);
+	item01.addImage("padrao",objeto1);
+	item01.scale = escala;
+	item01.bloqueado = false;
+	item01.segurando = false;
+	itens.add(item01);
+	item02 = createSprite(proporcaoTela*40,proporcaoTelaH*48);
+	item02.addImage("padrao",objeto2);
+	item02.scale = escala;
+	item02.bloqueado = false;
+	item02.segurando = false;
+	itens.add(item02);
+	item03 = createSprite(proporcaoTela*20,proporcaoTelaH*30);
+	item03.addImage("padrao",objeto3);
+	item03.scale = escala;
+	item03.bloqueado = false;
+	item03.segurando = false;	
+	itens.add(item03);
+	item04 = createSprite(proporcaoTela*70,proporcaoTelaH*20);
+	item04.addImage("padrao",objeto4);
+	item04.scale = escala;
+	item04.bloqueado = false;
+	item04.segurando = false;
+	itens.add(item04);
+	item05 = createSprite(proporcaoTela*70,proporcaoTelaH*59);
+	item05.addImage("padrao",objeto5);
+	item05.scale = escala;
+	item05.bloqueado = false;
+	item05.segurando = false;
+	itens.add(item05);
+	item06 = createSprite(proporcaoTela*92,proporcaoTelaH*25);
+	item06.addImage("padrao",objeto6);
+	item06.scale = escala;
+	item06.bloqueado = false;
+	item06.segurando = false;
+	itens.add(item06);
+	item07 = createSprite(proporcaoTela*22,proporcaoTelaH*11);
+	item07.addImage("padrao",objeto7);
+	item07.scale = escala;
+	item07.bloqueado = false;
+	item07.segurando = false;
+	itens.add(item07);
+	item08 = createSprite(proporcaoTela*53,proporcaoTelaH*59);
+	item08.addImage("padrao",objeto8);
+	item08.scale = escala;
+	item08.bloqueado = false;
+	item08.segurando = false;
+	itens.add(item08);
+	item09 = createSprite(proporcaoTela*16,proporcaoTelaH*55);
+	item09.addImage("padrao",objeto9);
+	item09.scale = escala;
+	item09.bloqueado = false;
+	item09.segurando = false;
+	itens.add(item09);
+	item10 = createSprite(proporcaoTela*48,proporcaoTelaH*12);
+	item10.addImage("padrao",objeto10);
+	item10.scale = escala;
+	item10.bloqueado = false;
+	item10.segurando = false;
+	itens.add(item10);
+	item11 = createSprite(proporcaoTela*32,proporcaoTelaH*62);
+	item11.addImage("padrao",objeto11);
+	item11.scale = escala;
+	item11.bloqueado = false;
+	item11.segurando = false;
+	itens.add(item11);
+	item12 = createSprite(proporcaoTela*80,proporcaoTelaH*78);
+	item12.addImage("padrao",objeto12);
+	item12.scale = escala;
+	item12.bloqueado = false;
+	item12.segurando = false;
+	itens.add(item12);
+	caixa = createSprite(proporcaoTela*15,proporcaoTelaH*60);
+	caixa.addAnimation("padrao",imgCaixa);
+	caixa.scale = escala;
 }

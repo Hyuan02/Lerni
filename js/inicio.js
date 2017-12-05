@@ -5,7 +5,6 @@ var opcaoAtividades1,opcaoAtividades2,opcaoAtividades3,opcaoAtividadesVoltar;
 var opcaoPuzzle1, opcaoPuzzleVoltar;
 var controladorPuzzle=0;
 var imagemInicial;
-var imagemInstrucoes;
 var imagemCapitulos;
 var imagemFases1;
 var imagemPuzzles,imagemRevisao;
@@ -13,9 +12,26 @@ var botaoRevisaoAvancar,botaoRevisaoVoltar,botaoRevisaoFechar,tituloRevisao, con
 var imagemAtual;
 var ponteiro, imgPonteiro1, imgPonteiro2;
 function preload(){
-	spriteCaixa = loadSpriteSheet("imagens/caixa.png",200,200,1); //load nos sprites com dimensoes e quantidade de frames
-	spriteBola = loadSpriteSheet("imagens/bola.png",100,100,1);
-	spriteEsquadro = loadSpriteSheet("imagens/esquadro.png",300,225,1);
+	imagemInstrucoes = loadImage("imagens/menu-instrucoes.png");
+	imgCaixa = loadImage("imagens/caixa.png");
+	cenario = loadImage("imagens/imagensPuzzle1/cenario1.png");
+	camada01 = loadImage("imagens/imagensPuzzle1/camada01.png");
+	camada02 = loadImage("imagens/imagensPuzzle1/camada02.png");
+	camada03 = loadImage("imagens/imagensPuzzle1/camada03.png");
+	camada04 = loadImage("imagens/imagensPuzzle1/camada04.png");
+	camada05 = loadImage("imagens/imagensPuzzle1/camada05.png");
+	objeto1 = loadImage("imagens/imagensPuzzle1/item01.png");
+	objeto2 = loadImage("imagens/imagensPuzzle1/item02.png");
+	objeto3 = loadImage("imagens/imagensPuzzle1/item03.png");
+	objeto4 = loadImage("imagens/imagensPuzzle1/item04.png");
+	objeto5 = loadImage("imagens/imagensPuzzle1/item05.png");
+	objeto6 = loadImage("imagens/imagensPuzzle1/item06.png");
+	objeto7 = loadImage("imagens/imagensPuzzle1/item07.png");
+	objeto8 = loadImage("imagens/imagensPuzzle1/item08.png");
+	objeto9 = loadImage("imagens/imagensPuzzle1/item09.png");
+	objeto10 = loadImage("imagens/imagensPuzzle1/item10.png");
+	objeto11 = loadImage("imagens/imagensPuzzle1/item11.png");
+	objeto12 = loadImage("imagens/imagensPuzzle1/item12.png");
 	imgBalaoA = loadImage("imagens/baloes/balao_azul.png");
 	imgBalaoB = loadImage("imagens/baloes/balao_verde.png");
 	imgBalaoC = loadImage("imagens/baloes/balao_vermelho.png");
@@ -34,7 +50,6 @@ function preload(){
 	imgflorI = loadImage("imagens/flores/petala9.png");
 	imgflorJ = loadImage("imagens/flores/petala10.png");
 	imagemInicial = loadImage("imagens/menu-principal.png");
-	imagemInstrucoes = loadImage("imagens/menu-instrucoes.png");
 	imagemCapitulos = loadImage("imagens/menu-capitulos.png");
 	imagemFases1 = loadImage("imagens/menu-fases1.png");
 	imgPonteiro1 = loadImage("imagens/cursor1.png");
@@ -80,7 +95,6 @@ function interfaceInicial(){
 	opcaoInicial1.mousePressed(interfaceCapitulos);
 	opcaoInicial2.mousePressed(interfaceInstrucoes);
 }
-
 function interfaceInstrucoes(){
 	removeElements();
 	image(imagemInstrucoes,0,0,width,height);
@@ -89,7 +103,6 @@ function interfaceInstrucoes(){
 	opcaoCapitulosVoltar.position(proporcaoTela*45,proporcaoTelaH*85);
 	opcaoCapitulosVoltar.mousePressed(interfaceInicial);
 }
-
 function interfaceCapitulos(){
 	removeElements();
 	background(255,255,255);
