@@ -5,6 +5,7 @@ var opcaoAtividades1,opcaoAtividades2,opcaoAtividades3,opcaoAtividadesVoltar;
 var opcaoPuzzle1, opcaoPuzzleVoltar;
 var controladorPuzzle=0;
 var imagemInicial;
+var imagemInstrucoes;
 var imagemCapitulos;
 var imagemFases1;
 var imagemPuzzles,imagemRevisao;
@@ -33,6 +34,7 @@ function preload(){
 	imgflorI = loadImage("imagens/flores/petala9.png");
 	imgflorJ = loadImage("imagens/flores/petala10.png");
 	imagemInicial = loadImage("imagens/menu-principal.png");
+	imagemInstrucoes = loadImage("imagens/menu-instrucoes.png");
 	imagemCapitulos = loadImage("imagens/menu-capitulos.png");
 	imagemFases1 = loadImage("imagens/menu-fases1.png");
 	imgPonteiro1 = loadImage("imagens/cursor1.png");
@@ -76,6 +78,16 @@ function interfaceInicial(){
 	opcaoInicial4.style('width',proporcaoTela*25+'px');
 	opcaoInicial4.style('height',proporcaoTelaH*8+'px');
 	opcaoInicial1.mousePressed(interfaceCapitulos);
+	opcaoInicial2.mousePressed(interfaceInstrucoes);
+}
+
+function interfaceInstrucoes(){
+	removeElements();
+	image(imagemInstrucoes,0,0,width,height);
+	opcaoCapitulosVoltar = createButton('Voltar');
+	opcaoCapitulosVoltar.addClass('opcoesVoltarInst');
+	opcaoCapitulosVoltar.position(proporcaoTela*45,proporcaoTelaH*85);
+	opcaoCapitulosVoltar.mousePressed(interfaceInicial);
 }
 
 function interfaceCapitulos(){
