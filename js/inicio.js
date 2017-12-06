@@ -13,6 +13,9 @@ var imagemPuzzles,imagemRevisao;
 var botaoRevisaoAvancar,botaoRevisaoVoltar,botaoRevisaoFechar,tituloRevisao, conteudoRevisao;
 var imagemAtual;
 var ponteiro, imgPonteiro1, imgPonteiro2;
+var vetorDialogo,vetorImagens;
+var molduraDialogo,botaoDialogo1,botaoDIalogo2,balaoDialogo1,balaoDialogo2;
+var conteudoDialogo;
 function preload(){
 	imagemInstrucoes = loadImage("imagens/menu-instrucoes.png");
 	imgCaixa = loadImage("imagens/caixa.png");
@@ -148,9 +151,9 @@ function interfaceCapitulo1(){
 	opcaoAtividades2.position(proporcaoTela*57,proporcaoTelaH*28);
 	opcaoAtividades3.position(proporcaoTela*77,proporcaoTelaH*52);
 	opcaoAtividadesVoltar.position(proporcaoTela*7,proporcaoTelaH*59);
-	opcaoAtividades1.mousePressed(iniciadorPuzzleUm);
-	opcaoAtividades2.mousePressed(iniciadorPuzzleDois);
-	opcaoAtividades3.mousePressed(iniciadorPuzzleTres);
+	opcaoAtividades1.mousePressed(dialogoAtividade1);
+	opcaoAtividades2.mousePressed(dialogoAtividade2);
+	opcaoAtividades3.mousePressed(dialogoAtividade3);
 	opcaoAtividades1.mouseOver(balaoAtividade1);
 	opcaoAtividades2.mouseOver(balaoAtividade2);
 	opcaoAtividades3.mouseOver(balaoAtividade3);
@@ -208,7 +211,6 @@ function iniciadorPuzzleUm(){
 	iniciaInterfacePuzzle();
 	iniciaCursor();
 	controladorPuzzle = 1;
-	
 }
 function iniciadorPuzzleDois(){
 	iniciaPuzzleDois();
@@ -290,6 +292,324 @@ function limpaSprites(){
 		allSprites[i].remove();
 	}
 	print(allSprites.length);
+}
+function dialogoAtividade1(){
+	removeElements();
+	background(0);
+	vetorDialogo=["Do i wanna know", "If this feeling flows both ways", "crawling back to you", "never thought of calling when you had a few", "cause i always do"];
+	vetorImagens=["imagens/imagensPuzzle1/camada01.png","imagens/imagensPuzzle1/camada02.png","imagens/imagensPuzzle1/camada03.png","imagens/imagensPuzzle1/camada04.png"];
+	let controladorDialogo=0;
+	var texto = vetorDialogo[controladorDialogo];
+	molduraDialogo = createImg("imagens/dialogos/moldura-novel.png");
+	molduraDialogo.style('width',width+'px');
+	molduraDialogo.style('height',height+'px');
+	molduraDialogo.position(0,0);
+	var imagemDialogo = createImg(vetorImagens[controladorDialogo]); 
+	imagemDialogo.position(proporcaoTela*14,proporcaoTelaH*12);
+	imagemDialogo.style("width",proporcaoTela+"px");
+	imagemDialogo.style("height",proporcaoTelaH+"px"); 
+	balaoDialogo1 = createImg("imagens/dialogos/balao-novel1.png");
+	balaoDialogo1.position(proporcaoTela*25,proporcaoTelaH*52);
+	balaoDialogo1.style("width",proporcaoTela*60+"px");
+	balaoDialogo1.style("height",proporcaoTelaH*35+"px");
+	balaoDialogo2 = createImg("imagens/dialogos/balao-novel2.png");
+	balaoDialogo2.hide();
+	conteudoDialogo = createSpan(texto);
+	conteudoDialogo.position(proporcaoTela*35,proporcaoTelaH*54);
+	conteudoDialogo.addClass('conteudoDialogo');
+	function incrementaDialogo(){
+		controladorDialogo++;
+		conteudoDialogo.remove();
+		if(controladorDialogo == 2 || controladorDialogo == 3 || controladorDialogo == 5){
+			imagemDialogo.remove();
+			imagemDialogo = createImg(vetorImagens[controladorDialogo]);
+			imagemDialogo.position(proporcaoTela*14,proporcaoTelaH*12);
+			imagemDialogo.style("width",proporcaoTela*18+"px");
+			imagemDialogo.style("height",proporcaoTelaH*20+"px");  
+			balaoDialogo1.remove();
+			balaoDialogo2.remove();
+			balaoDialogo1 = createImg("imagens/dialogos/balao-novel1.png");
+			balaoDialogo1.position(proporcaoTela*25,proporcaoTelaH*52);
+			balaoDialogo1.style("width",proporcaoTela*60+"px");
+			balaoDialogo1.style("height",proporcaoTelaH*35+"px");
+		}
+		else if(controladorDialogo==1 || controladorDialogo == 4 || controladorDialogo == 6){
+			imagemDialogo.remove();
+			imagemDialogo = createImg(vetorImagens[controladorDialogo]);
+			imagemDialogo.position(proporcaoTela*14,proporcaoTelaH*12);
+			imagemDialogo.style("width",proporcaoTela*18+"px");
+			imagemDialogo.style("height",proporcaoTelaH*20+"px"); 
+			balaoDialogo2.remove();
+			balaoDialogo1.remove();
+			balaoDialogo2 = createImg("imagens/dialogos/balao-novel2.png");
+			balaoDialogo2.position(proporcaoTela*25,proporcaoTelaH*52);
+			balaoDialogo2.style("width",proporcaoTela*60+"px");
+			balaoDialogo2.style("height",proporcaoTelaH*35+"px");
+		}
+		texto = vetorDialogo[controladorDialogo];
+		conteudoDialogo = createSpan(texto);
+		conteudoDialogo.position(proporcaoTela*35,proporcaoTelaH*54);
+		conteudoDialogo.addClass('conteudoDialogo');
+		if(controladorDialogo==vetorDialogo.length)
+			iniciadorPuzzleUm();
+	}
+	function decrementaDialogo(){
+		if(controladorDialogo>0)
+			controladorDialogo--;
+		conteudoDialogo.remove();
+		if(controladorDialogo == 1 || controladorDialogo == 3 || controladorDialogo == 5){
+			imagemDialogo.remove();
+			imagemDialogo = createImg(vetorImagens[controladorDialogo]);
+			imagemDialogo.position(proporcaoTela*14,proporcaoTelaH*12);
+			imagemDialogo.style("width",proporcaoTela*18+"px");
+			imagemDialogo.style("height",proporcaoTelaH*20+"px"); 
+			balaoDialogo2.remove();
+			balaoDialogo1 = createImg("imagens/dialogos/balao-novel1.png");
+			balaoDialogo1.position(proporcaoTela*25,proporcaoTelaH*52);
+			balaoDialogo1.style("width",proporcaoTela*60+"px");
+			balaoDialogo1.style("height",proporcaoTelaH*35+"px");
+		}
+		else if(controladorDialogo==1 || controladorDialogo == 4 || controladorDialogo == 6){
+			imagemDialogo.remove();
+			imagemDialogo = createImg(vetorImagens[controladorDialogo]);
+			imagemDialogo.position(proporcaoTela*14,proporcaoTelaH*12);
+			imagemDialogo.style("width",proporcaoTela*18+"px");
+			imagemDialogo.style("height",proporcaoTelaH*20+"px"); 
+			balaoDialogo1.remove();
+			balaoDialogo2 = createImg("imagens/dialogos/balao-novel1.png");
+			balaoDialogo2.position(proporcaoTela*25,proporcaoTelaH*52);
+			balaoDialogo2.style("width",proporcaoTela*60+"px");
+			balaoDialogo2.style("height",proporcaoTelaH*35+"px");
+		}
+		texto = vetorDialogo[controladorDialogo];
+		conteudoDialogo = createSpan(texto);
+		conteudoDialogo.position(proporcaoTela*35,proporcaoTelaH*54);
+		conteudoDialogo.addClass('conteudoDialogo');
+	}
+	botaoDialogo1 = createButton('<img src="imagens/dialogos/botao-novel1.png" width="'+ 2.5*proporcaoTela + 'px" height="' + 3*proporcaoTelaH +'px" >');
+	botaoDialogo2 = createButton('<img src="imagens/dialogos/botao-novel2.png" width="'+ 2.5*proporcaoTela + 'px" height="' + 3*proporcaoTelaH +'px" >');
+	botaoDialogo1.mousePressed(incrementaDialogo);
+	botaoDialogo2.mousePressed(decrementaDialogo);
+	botaoDialogo1.position(proporcaoTela*67,proporcaoTelaH*90);
+	botaoDialogo2.position(proporcaoTela*58,proporcaoTelaH*90);
+	botaoDialogo1.style('width',proporcaoTela*5+'px');
+	botaoDialogo1.style('height',proporcaoTelaH*5+'px');
+	botaoDialogo2.style('width',proporcaoTela*5+'px');
+	botaoDialogo2.style('height',proporcaoTelaH*5+'px');
+	botaoDialogo1.addClass('botaoDialogo1');
+	botaoDialogo2.addClass('botaoDialogo2');
+}
+function dialogoAtividade2(){
+	removeElements();
+	background(0);
+	vetorDialogo=["Do i wanna know", "If this feeling flows both ways", "crawling back to you", "never thought of calling when you had a few", "cause i always do"];
+	vetorImagens=["imagens/imagensPuzzle1/camada01.png","imagens/imagensPuzzle1/camada02.png","imagens/imagensPuzzle1/camada03.png","imagens/imagensPuzzle1/camada04.png"];
+	let controladorDialogo=0;
+	var texto = vetorDialogo[controladorDialogo];
+	molduraDialogo = createImg("imagens/dialogos/moldura-novel.png");
+	molduraDialogo.style('width',width+'px');
+	molduraDialogo.style('height',height+'px');
+	molduraDialogo.position(0,0);
+	var imagemDialogo = createImg(vetorImagens[controladorDialogo]); 
+	imagemDialogo.position(proporcaoTela*14,proporcaoTelaH*12);
+	imagemDialogo.style("width",proporcaoTela+"px");
+	imagemDialogo.style("height",proporcaoTelaH+"px"); 
+	balaoDialogo1 = createImg("imagens/dialogos/balao-novel1.png");
+	balaoDialogo1.position(proporcaoTela*25,proporcaoTelaH*52);
+	balaoDialogo1.style("width",proporcaoTela*60+"px");
+	balaoDialogo1.style("height",proporcaoTelaH*35+"px");
+	balaoDialogo2 = createImg("imagens/dialogos/balao-novel2.png");
+	balaoDialogo2.hide();
+	conteudoDialogo = createSpan(texto);
+	conteudoDialogo.position(proporcaoTela*35,proporcaoTelaH*54);
+	conteudoDialogo.addClass('conteudoDialogo');
+	function incrementaDialogo(){
+		controladorDialogo++;
+		conteudoDialogo.remove();
+		if(controladorDialogo == 2 || controladorDialogo == 3 || controladorDialogo == 5){
+			imagemDialogo.remove();
+			imagemDialogo = createImg(vetorImagens[controladorDialogo]);
+			imagemDialogo.position(proporcaoTela*14,proporcaoTelaH*12);
+			imagemDialogo.style("width",proporcaoTela*18+"px");
+			imagemDialogo.style("height",proporcaoTelaH*20+"px");  
+			balaoDialogo1.remove();
+			balaoDialogo2.remove();
+			balaoDialogo1 = createImg("imagens/dialogos/balao-novel1.png");
+			balaoDialogo1.position(proporcaoTela*25,proporcaoTelaH*52);
+			balaoDialogo1.style("width",proporcaoTela*60+"px");
+			balaoDialogo1.style("height",proporcaoTelaH*35+"px");
+		}
+		else if(controladorDialogo==1 || controladorDialogo == 4 || controladorDialogo == 6){
+			imagemDialogo.remove();
+			imagemDialogo = createImg(vetorImagens[controladorDialogo]);
+			imagemDialogo.position(proporcaoTela*14,proporcaoTelaH*12);
+			imagemDialogo.style("width",proporcaoTela*18+"px");
+			imagemDialogo.style("height",proporcaoTelaH*20+"px"); 
+			balaoDialogo2.remove();
+			balaoDialogo1.remove();
+			balaoDialogo2 = createImg("imagens/dialogos/balao-novel2.png");
+			balaoDialogo2.position(proporcaoTela*25,proporcaoTelaH*52);
+			balaoDialogo2.style("width",proporcaoTela*60+"px");
+			balaoDialogo2.style("height",proporcaoTelaH*35+"px");
+		}
+		texto = vetorDialogo[controladorDialogo];
+		conteudoDialogo = createSpan(texto);
+		conteudoDialogo.position(proporcaoTela*35,proporcaoTelaH*54);
+		conteudoDialogo.addClass('conteudoDialogo');
+		if(controladorDialogo==vetorDialogo.length)
+			iniciadorPuzzleDois();
+	}
+	function decrementaDialogo(){
+		if(controladorDialogo>0)
+			controladorDialogo--;
+		conteudoDialogo.remove();
+		if(controladorDialogo == 1 || controladorDialogo == 3 || controladorDialogo == 5){
+			imagemDialogo.remove();
+			imagemDialogo = createImg(vetorImagens[controladorDialogo]);
+			imagemDialogo.position(proporcaoTela*14,proporcaoTelaH*12);
+			imagemDialogo.style("width",proporcaoTela*18+"px");
+			imagemDialogo.style("height",proporcaoTelaH*20+"px"); 
+			balaoDialogo2.remove();
+			balaoDialogo1 = createImg("imagens/dialogos/balao-novel1.png");
+			balaoDialogo1.position(proporcaoTela*25,proporcaoTelaH*52);
+			balaoDialogo1.style("width",proporcaoTela*60+"px");
+			balaoDialogo1.style("height",proporcaoTelaH*35+"px");
+		}
+		else if(controladorDialogo==1 || controladorDialogo == 4 || controladorDialogo == 6){
+			imagemDialogo.remove();
+			imagemDialogo = createImg(vetorImagens[controladorDialogo]);
+			imagemDialogo.position(proporcaoTela*14,proporcaoTelaH*12);
+			imagemDialogo.style("width",proporcaoTela*18+"px");
+			imagemDialogo.style("height",proporcaoTelaH*20+"px"); 
+			balaoDialogo1.remove();
+			balaoDialogo2 = createImg("imagens/dialogos/balao-novel1.png");
+			balaoDialogo2.position(proporcaoTela*25,proporcaoTelaH*52);
+			balaoDialogo2.style("width",proporcaoTela*60+"px");
+			balaoDialogo2.style("height",proporcaoTelaH*35+"px");
+		}
+		texto = vetorDialogo[controladorDialogo];
+		conteudoDialogo = createSpan(texto);
+		conteudoDialogo.position(proporcaoTela*35,proporcaoTelaH*54);
+		conteudoDialogo.addClass('conteudoDialogo');
+	}
+	botaoDialogo1 = createButton('<img src="imagens/dialogos/botao-novel1.png" width="'+ 2.5*proporcaoTela + 'px" height="' + 3*proporcaoTelaH +'px" >');
+	botaoDialogo2 = createButton('<img src="imagens/dialogos/botao-novel2.png" width="'+ 2.5*proporcaoTela + 'px" height="' + 3*proporcaoTelaH +'px" >');
+	botaoDialogo1.mousePressed(incrementaDialogo);
+	botaoDialogo2.mousePressed(decrementaDialogo);
+	botaoDialogo1.position(proporcaoTela*67,proporcaoTelaH*90);
+	botaoDialogo2.position(proporcaoTela*58,proporcaoTelaH*90);
+	botaoDialogo1.style('width',proporcaoTela*5+'px');
+	botaoDialogo1.style('height',proporcaoTelaH*5+'px');
+	botaoDialogo2.style('width',proporcaoTela*5+'px');
+	botaoDialogo2.style('height',proporcaoTelaH*5+'px');
+	botaoDialogo1.addClass('botaoDialogo1');
+	botaoDialogo2.addClass('botaoDialogo2');
+}
+function dialogoAtividade3(){
+	removeElements();
+	background(0);
+	vetorDialogo=["Do i wanna know", "If this feeling flows both ways", "crawling back to you", "never thought of calling when you had a few", "cause i always do"];
+	vetorImagens=["imagens/imagensPuzzle1/camada01.png","imagens/imagensPuzzle1/camada02.png","imagens/imagensPuzzle1/camada03.png","imagens/imagensPuzzle1/camada04.png"];
+	let controladorDialogo=0;
+	var texto = vetorDialogo[controladorDialogo];
+	molduraDialogo = createImg("imagens/dialogos/moldura-novel.png");
+	molduraDialogo.style('width',width+'px');
+	molduraDialogo.style('height',height+'px');
+	molduraDialogo.position(0,0);
+	var imagemDialogo = createImg(vetorImagens[controladorDialogo]); 
+	imagemDialogo.position(proporcaoTela*14,proporcaoTelaH*12);
+	imagemDialogo.style("width",proporcaoTela+"px");
+	imagemDialogo.style("height",proporcaoTelaH+"px"); 
+	balaoDialogo1 = createImg("imagens/dialogos/balao-novel1.png");
+	balaoDialogo1.position(proporcaoTela*25,proporcaoTelaH*52);
+	balaoDialogo1.style("width",proporcaoTela*60+"px");
+	balaoDialogo1.style("height",proporcaoTelaH*35+"px");
+	balaoDialogo2 = createImg("imagens/dialogos/balao-novel2.png");
+	balaoDialogo2.hide();
+	conteudoDialogo = createSpan(texto);
+	conteudoDialogo.position(proporcaoTela*35,proporcaoTelaH*54);
+	conteudoDialogo.addClass('conteudoDialogo');
+	function incrementaDialogo(){
+		controladorDialogo++;
+		conteudoDialogo.remove();
+		if(controladorDialogo == 2 || controladorDialogo == 3 || controladorDialogo == 5){
+			imagemDialogo.remove();
+			imagemDialogo = createImg(vetorImagens[controladorDialogo]);
+			imagemDialogo.position(proporcaoTela*14,proporcaoTelaH*12);
+			imagemDialogo.style("width",proporcaoTela*18+"px");
+			imagemDialogo.style("height",proporcaoTelaH*20+"px");  
+			balaoDialogo1.remove();
+			balaoDialogo2.remove();
+			balaoDialogo1 = createImg("imagens/dialogos/balao-novel1.png");
+			balaoDialogo1.position(proporcaoTela*25,proporcaoTelaH*52);
+			balaoDialogo1.style("width",proporcaoTela*60+"px");
+			balaoDialogo1.style("height",proporcaoTelaH*35+"px");
+		}
+		else if(controladorDialogo==1 || controladorDialogo == 4 || controladorDialogo == 6){
+			imagemDialogo.remove();
+			imagemDialogo = createImg(vetorImagens[controladorDialogo]);
+			imagemDialogo.position(proporcaoTela*14,proporcaoTelaH*12);
+			imagemDialogo.style("width",proporcaoTela*18+"px");
+			imagemDialogo.style("height",proporcaoTelaH*20+"px"); 
+			balaoDialogo2.remove();
+			balaoDialogo1.remove();
+			balaoDialogo2 = createImg("imagens/dialogos/balao-novel2.png");
+			balaoDialogo2.position(proporcaoTela*25,proporcaoTelaH*52);
+			balaoDialogo2.style("width",proporcaoTela*60+"px");
+			balaoDialogo2.style("height",proporcaoTelaH*35+"px");
+		}
+		texto = vetorDialogo[controladorDialogo];
+		conteudoDialogo = createSpan(texto);
+		conteudoDialogo.position(proporcaoTela*35,proporcaoTelaH*54);
+		conteudoDialogo.addClass('conteudoDialogo');
+		if(controladorDialogo==vetorDialogo.length)
+			iniciadorPuzzleTres();
+	}
+	function decrementaDialogo(){
+		if(controladorDialogo>0)
+			controladorDialogo--;
+		conteudoDialogo.remove();
+		if(controladorDialogo == 1 || controladorDialogo == 3 || controladorDialogo == 5){
+			imagemDialogo.remove();
+			imagemDialogo = createImg(vetorImagens[controladorDialogo]);
+			imagemDialogo.position(proporcaoTela*14,proporcaoTelaH*12);
+			imagemDialogo.style("width",proporcaoTela*18+"px");
+			imagemDialogo.style("height",proporcaoTelaH*20+"px"); 
+			balaoDialogo2.remove();
+			balaoDialogo1 = createImg("imagens/dialogos/balao-novel1.png");
+			balaoDialogo1.position(proporcaoTela*25,proporcaoTelaH*52);
+			balaoDialogo1.style("width",proporcaoTela*60+"px");
+			balaoDialogo1.style("height",proporcaoTelaH*35+"px");
+		}
+		else if(controladorDialogo==1 || controladorDialogo == 4 || controladorDialogo == 6){
+			imagemDialogo.remove();
+			imagemDialogo = createImg(vetorImagens[controladorDialogo]);
+			imagemDialogo.position(proporcaoTela*14,proporcaoTelaH*12);
+			imagemDialogo.style("width",proporcaoTela*18+"px");
+			imagemDialogo.style("height",proporcaoTelaH*20+"px"); 
+			balaoDialogo1.remove();
+			balaoDialogo2 = createImg("imagens/dialogos/balao-novel1.png");
+			balaoDialogo2.position(proporcaoTela*25,proporcaoTelaH*52);
+			balaoDialogo2.style("width",proporcaoTela*60+"px");
+			balaoDialogo2.style("height",proporcaoTelaH*35+"px");
+		}
+		texto = vetorDialogo[controladorDialogo];
+		conteudoDialogo = createSpan(texto);
+		conteudoDialogo.position(proporcaoTela*35,proporcaoTelaH*54);
+		conteudoDialogo.addClass('conteudoDialogo');
+	}
+	botaoDialogo1 = createButton('<img src="imagens/dialogos/botao-novel1.png" width="'+ 2.5*proporcaoTela + 'px" height="' + 3*proporcaoTelaH +'px" >');
+	botaoDialogo2 = createButton('<img src="imagens/dialogos/botao-novel2.png" width="'+ 2.5*proporcaoTela + 'px" height="' + 3*proporcaoTelaH +'px" >');
+	botaoDialogo1.mousePressed(incrementaDialogo);
+	botaoDialogo2.mousePressed(decrementaDialogo);
+	botaoDialogo1.position(proporcaoTela*67,proporcaoTelaH*90);
+	botaoDialogo2.position(proporcaoTela*58,proporcaoTelaH*90);
+	botaoDialogo1.style('width',proporcaoTela*5+'px');
+	botaoDialogo1.style('height',proporcaoTelaH*5+'px');
+	botaoDialogo2.style('width',proporcaoTela*5+'px');
+	botaoDialogo2.style('height',proporcaoTelaH*5+'px');
+	botaoDialogo1.addClass('botaoDialogo1');
+	botaoDialogo2.addClass('botaoDialogo2');
 }
 function interfaceRevisao(){
 	let fechar = function (){

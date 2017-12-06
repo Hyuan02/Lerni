@@ -123,3 +123,15 @@ canvas{
 	font-family:'kidsregular';
 	font-size:1vw;
 }
+.conteudoDialogo{
+	font-family:'kidsregular';
+	font-size:2vw;
+}
+.botaoDialogo1{
+	background-color:#ffec90;
+	border:none;
+}
+.botaoDialogo2{
+	background-color:#ffec90;
+	border:none;
+}
