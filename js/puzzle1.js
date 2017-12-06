@@ -3,7 +3,7 @@ var camada01,camada02,camada03,camada04,camada05;
 var layer01,layer02,layer03,layer04,layer05;
 var item01,item02,item03,item04,item05,item06,item07,item08,item09,item10,item11,item12;
 var escala,escala2;
-var itens;
+var itens, listaItens;
 var caixa,imgCaixa;
 function retornaEscala(resolucao){
 	let decremento = resolucao - 14*proporcaoTela;
@@ -141,7 +141,10 @@ function criaObjetos(){
 	item12.bloqueado = false;
 	item12.segurando = false;
 	itens.add(item12);
-	caixa = createSprite(proporcaoTela*15,proporcaoTelaH*60);
+	caixa = createSprite(proporcaoTela*55,proporcaoTelaH*80);
 	caixa.addAnimation("padrao",imgCaixa);
-	caixa.scale = escala;
+	caixa.scale = escala/2;
+	listaItens = createSprite(proporcaoTela*25,proporcaoTelaH*77);
+	listaItens.addImage("padrao",imgLista);
+	listaItens.scale = escala/2;
 }

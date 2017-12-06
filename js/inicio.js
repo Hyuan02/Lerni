@@ -19,6 +19,7 @@ var conteudoDialogo;
 function preload(){
 	imagemInstrucoes = loadImage("imagens/menu-instrucoes.png");
 	imgCaixa = loadImage("imagens/caixa.png");
+	imgLista = loadImage("imagens/lista-objetos.png");
 	cenario = loadImage("imagens/imagensPuzzle1/cenario1.png");
 	camada01 = loadImage("imagens/imagensPuzzle1/camada01.png");
 	camada02 = loadImage("imagens/imagensPuzzle1/camada02.png");
