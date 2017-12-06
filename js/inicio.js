@@ -6,6 +6,8 @@ var opcaoPuzzle1, opcaoPuzzleVoltar;
 var controladorPuzzle=0;
 var imagemInicial;
 var imagemCapitulos;
+var imagemInstrucoes;
+var imagemCartao,conteudoCartao;
 var imagemFases1;
 var imagemPuzzles,imagemRevisao;
 var botaoRevisaoAvancar,botaoRevisaoVoltar,botaoRevisaoFechar,tituloRevisao, conteudoRevisao;
@@ -149,8 +151,57 @@ function interfaceCapitulo1(){
 	opcaoAtividades1.mousePressed(iniciadorPuzzleUm);
 	opcaoAtividades2.mousePressed(iniciadorPuzzleDois);
 	opcaoAtividades3.mousePressed(iniciadorPuzzleTres);
+	opcaoAtividades1.mouseOver(balaoAtividade1);
+	opcaoAtividades2.mouseOver(balaoAtividade2);
+	opcaoAtividades3.mouseOver(balaoAtividade3);
+	opcaoAtividades1.mouseOut(balaoEncerrador);
+	opcaoAtividades2.mouseOut(balaoEncerrador);
+	opcaoAtividades3.mouseOut(balaoEncerrador);
 	opcaoAtividadesVoltar.mousePressed(interfaceCapitulos);
 
+}
+function balaoAtividade1(){
+	let conteudo;
+	imagemCartao = createImg("imagens/cartao-informativo-fase1.png");
+	imagemCartao.style("width",proporcaoTela*30+"px");
+	imagemCartao.style("height",proporcaoTelaH*40+"px");
+	conteudo = "<p>Lorem ipsum dolor sit amet,<br/> consectetur adipisicing elit, sed do eiusmod<br/>" +
+	"tempor incididunt ut labore <br/>et dolore magna aliqua. Ut enim ad minim veniam,<br/>" +
+	"quis nostrud exercitation ullamco laboris<br/> nisi ut aliquip ex ea commodo</p>";
+	imagemCartao.position(proporcaoTela*30,proporcaoTelaH*26);
+	conteudoCartao = createSpan(conteudo);
+	conteudoCartao.position(proporcaoTela*33,proporcaoTelaH*36);
+	conteudoCartao.addClass("conteudoBalao");
+}
+function balaoAtividade2(){
+	let conteudo;
+	imagemCartao = createImg("imagens/cartao-informativo-fase2.png");
+	imagemCartao.style("width",proporcaoTela*30+"px");
+	imagemCartao.style("height",proporcaoTelaH*40+"px");
+	conteudo = "<p>Lorem ipsum dolor sit amet,<br/> consectetur adipisicing elit, sed do eiusmod<br/>" +
+	"tempor incididunt ut labore <br/>et dolore magna aliqua. Ut enim ad minim veniam,<br/>" +
+	"quis nostrud exercitation ullamco laboris<br/> nisi ut aliquip ex ea commodo</p>";
+	imagemCartao.position(proporcaoTela*61,proporcaoTelaH*-3);
+	conteudoCartao = createSpan(conteudo);
+	conteudoCartao.position(proporcaoTela*64,proporcaoTelaH*2);
+	conteudoCartao.addClass("conteudoBalao");
+}
+function balaoAtividade3(){
+	let conteudo;
+	imagemCartao = createImg("imagens/cartao-informativo-fase3.png");
+	imagemCartao.style("width",proporcaoTela*30+"px");
+	imagemCartao.style("height",proporcaoTelaH*40+"px");
+	conteudo = "<p>Lorem ipsum dolor sit amet,<br/> consectetur adipisicing elit, sed do eiusmod<br/>" +
+	"tempor incididunt ut labore <br/>et dolore magna aliqua. Ut enim ad minim veniam,<br/>" +
+	"quis nostrud exercitation ullamco laboris<br/> nisi ut aliquip ex ea commodo</p>";
+	imagemCartao.position(proporcaoTela*45,proporcaoTelaH*20);
+	conteudoCartao = createSpan(conteudo);
+	conteudoCartao.position(proporcaoTela*49,proporcaoTelaH*22);
+	conteudoCartao.addClass("conteudoBalao");
+}
+function balaoEncerrador(){
+	imagemCartao.remove();
+	conteudoCartao.remove();
 }
 function iniciadorPuzzleUm(){
 	iniciaPuzzleUm();
