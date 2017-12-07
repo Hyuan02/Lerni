@@ -66,6 +66,7 @@ function desenhadorPuzzleUm(){
 		clear();
 		// textSize(70);
 		// text("GRATULOJN!",width/2,height/2);
+		background(178,255,154);
 		image(imagemGratulon,450,150);
 	}
 }

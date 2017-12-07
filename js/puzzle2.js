@@ -110,6 +110,7 @@ function desenhadorPuzzleDois(){
 	switch(estado){
 		case 1:
 			clear();
+			background(178,255,154);
 			incrementaTempo(baloesPegos);
 			drawSprites();
 			textFont(fonteTitulos);
@@ -123,6 +124,7 @@ function desenhadorPuzzleDois(){
 			// textSize(70);
 			cursor();
 			// text("GRATULOJN!",width/2,height/2);
+			background(178,255,154);
 			image(imagemGratulon,450,150);
 		break;
 	}

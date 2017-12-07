@@ -128,6 +128,7 @@ function desenhadorPuzzleTres(){
 	switch(estado){
 		case 1:
 			clear();
+			background(178,255,154);
 			incrementaTempoPuzzle3(FloresPegas);
 			drawSprites();
 			textFont(fonteTitulos);
@@ -140,6 +141,7 @@ function desenhadorPuzzleTres(){
 			clear();
 			// textSize(70);
 			// text("GRATULOJN!",width/2,height/2);
+			background(178,255,154);
 			image(imagemGratulon,450,150);
 		break;
 	}

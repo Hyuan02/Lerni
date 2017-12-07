@@ -208,7 +208,7 @@ function balaoAtividade3(){
 	conteudo = "<p style='text-align: right'>Vamos aprender a <br>contar em Esperanto! <br>Clique nas flores <br >que tiverem o mesmo <br>número de pétalas que <br>aparecer na tela.</p>";
 	imagemCartao.position(proporcaoTela*45,proporcaoTelaH*20);
 	conteudoCartao = createSpan(conteudo);
-	conteudoCartao.position(proporcaoTela*54,proporcaoTelaH*26);
+	conteudoCartao.position(proporcaoTela*57,proporcaoTelaH*26);
 	conteudoCartao.addClass("conteudoBalao");
 }
 function balaoEncerrador(){
@@ -304,7 +304,7 @@ function limpaSprites(){
 }
 function dialogoAtividade1(){
 	removeElements();
-	background(0);
+	image(imagemFases1,proporcaoTela*14,proporcaoTelaH*6,proporcaoTela*83,proporcaoTelaH*81);
 	vetorDialogo=["<p style='font-size:25px;'>Muito bem pessoal! <br />Não podemos montar uma boa festa <br />sem antes tivermos alguns itens. Que tal eu <br />ensinar a vocês como se fala o nome desses objetos <br /> enquanto procuramos por eles?</p>", "Certo!", "Ok né, não tenho outra escolha…"];
 	vetorImagens=["imagens/dialogos/lolo-animado.png","imagens/dialogos/floppy-animado.png","imagens/dialogos/jilo-tedio.png"];
 	let controladorDialogo=0;
@@ -329,7 +329,7 @@ function dialogoAtividade1(){
 	function incrementaDialogo(){
 		controladorDialogo++;
 		conteudoDialogo.remove();
-		if(controladorDialogo == 2 || controladorDialogo == 3 || controladorDialogo == 5){
+		if(controladorDialogo == 0 || controladorDialogo == 2 || controladorDialogo == 3 || controladorDialogo == 5){
 			imagemDialogo.remove();
 			imagemDialogo = createImg(vetorImagens[controladorDialogo]);
 			imagemDialogo.position(proporcaoTela*14,proporcaoTelaH*12);
@@ -366,7 +366,7 @@ function dialogoAtividade1(){
 		if(controladorDialogo>0)
 			controladorDialogo--;
 		conteudoDialogo.remove();
-		if(controladorDialogo == 1 || controladorDialogo == 3 || controladorDialogo == 5){
+		if(controladorDialogo == 0 || controladorDialogo == 1 || controladorDialogo == 3 || controladorDialogo == 5){
 			imagemDialogo.remove();
 			imagemDialogo = createImg(vetorImagens[controladorDialogo]);
 			imagemDialogo.position(proporcaoTela*14,proporcaoTelaH*12);
@@ -410,7 +410,7 @@ function dialogoAtividade1(){
 }
 function dialogoAtividade2(){
 	removeElements();
-	background(0);
+	image(imagemFases1,proporcaoTela*14,proporcaoTelaH*6,proporcaoTela*83,proporcaoTelaH*81);
 	vetorDialogo=["Bom, vamos lá! Pra começar, vocês dois tem que <br /> aprender o nome das cores!", "Mas o nome das cores eu já sei! <br /> Amarelo, azul, vermelho...", "Mas Jiló, os nomes das cores são diferentes em <br /> Esperanto! A pronúncia é diferente, por exemplo! <br />A escrita também...", "Ah, é? Então tá. Como são, então?", "<p style='font-size:18px'>Vamos aprender algumas enquanto arrumamos a festa? <br />Vocês coletam os balões com as cores que eu vou dizer agora. <br />	Assim, começamos a preparar as coisas enquanto vocês aprendem! <br />O que acham?</p>", "<p style='text-transform: uppercase; font-size:50px; font-weight: bold;'>Pode ser!</p>"];
 	vetorImagens=["imagens/dialogos/lolo-animado.png","imagens/dialogos/jilo-estranhando.png","imagens/dialogos/floppy-normal.png","imagens/dialogos/jilo-normal.png","imagens/dialogos/lolo-animado.png","imagens/dialogos/jilo-floppy.png"];
 	let controladorDialogo=0;
@@ -472,7 +472,7 @@ function dialogoAtividade2(){
 		if(controladorDialogo>0)
 			controladorDialogo--;
 		conteudoDialogo.remove();
-		if(controladorDialogo == 1 || controladorDialogo == 3 || controladorDialogo == 5){
+		if(controladorDialogo == 0 || controladorDialogo == 1 || controladorDialogo == 2 || controladorDialogo == 3 || controladorDialogo == 5){
 			imagemDialogo.remove();
 			imagemDialogo = createImg(vetorImagens[controladorDialogo]);
 			imagemDialogo.position(proporcaoTela*14,proporcaoTelaH*12);
@@ -516,7 +516,7 @@ function dialogoAtividade2(){
 }
 function dialogoAtividade3(){
 	removeElements();
-	background(0);
+	image(imagemFases1,proporcaoTela*14,proporcaoTelaH*6,proporcaoTela*83,proporcaoTelaH*81);
 	vetorDialogo=["<p style='font-size: 18px;'>Não podemos organizar uma festa sem antes conhecermos os números <br /> em Esperanto. Se não, como vamos saber quanto pratos <br /> e guardanapos devemos arranjar? Ou informar para os convidados <br /> quantos pedaços de bolo poderão receber?  <br /> Ou como dizer quanto de chocolate você <br /> colocou para que o bolo ficasse delicioso!</p>", "Verdade, faz muito sentido… <br />Eu não achei que ia precisar pra tanta coisa!", "Não seria mais fácil escrever <br />os números num papel?", "<p style='font-size:50px; font-weight: bold;'>JILÓ!</p>", "Tá bom então.", "<p style='font-size: 18px;'>Muito bem, vou lhes ensinar os números! <br />Para isso, vocês terão que coletar flores com o número de pétalas <br />correspondente ao número que eu disser. <br />Assim também conseguimos decorar nossa festa <br />e deixá-la ainda mais bonita!</p>"];
 	vetorImagens=["imagens/dialogos/lolo-serio.png","imagens/dialogos/floppy-animado.png","imagens/dialogos/jilo-tedio.png","imagens/dialogos/floppy-zangado.png","imagens/dialogos/jilo-raiva.png","imagens/dialogos/lolo-normal.png"];
 	let controladorDialogo=0;
@@ -578,7 +578,7 @@ function dialogoAtividade3(){
 		if(controladorDialogo>0)
 			controladorDialogo--;
 		conteudoDialogo.remove();
-		if(controladorDialogo == 1 || controladorDialogo == 3 || controladorDialogo == 5){
+		if(controladorDialogo == 1 || controladorDialogo == 2 || controladorDialogo == 3 || controladorDialogo == 5){
 			imagemDialogo.remove();
 			imagemDialogo = createImg(vetorImagens[controladorDialogo]);
 			imagemDialogo.position(proporcaoTela*14,proporcaoTelaH*12);
@@ -590,7 +590,7 @@ function dialogoAtividade3(){
 			balaoDialogo1.style("width",proporcaoTela*60+"px");
 			balaoDialogo1.style("height",proporcaoTelaH*35+"px");
 		}
-		else if(controladorDialogo==1 || controladorDialogo == 4 || controladorDialogo == 6){
+		else if(controladorDialogo == 0 || controladorDialogo==1 || controladorDialogo == 4 || controladorDialogo == 6){
 			imagemDialogo.remove();
 			imagemDialogo = createImg(vetorImagens[controladorDialogo]);
 			imagemDialogo.position(proporcaoTela*14,proporcaoTelaH*12);
@@ -643,7 +643,7 @@ function interfaceRevisao(){
 	let conteudo;
 	switch(controladorPuzzle){
 		case 1:
-			conteudo = "<p>CHAPÉU DE FESTA - PARTO ĈAPELO <br> BARBANTE - KORDO <br /> LONA - TOLO <br /> TINTA - INKO <br /> PINCEL - BROSO <br /> CADEIRA - SEĜO <br /> GUARDANAPOS - BUŜTUKOJ <br /> PRATOS - TELEROJ <br /> TALHERES - KUIRILARO <br /> COPOS - TASOJ <br /> SERPENTINA - SERPENTO <br /> CONFETE - KONFETI <br /> MESA - TABLO <br /> PANO - TUKO</p>"
+			conteudo = "<p>CHAPÉU DE FESTA - PARTO ĈAPELO <br> BARBANTE - KORDO <br /> LONA - TOLO <br /> TINTA - INKO <br /> PINCEL - BROSO <br /> CADEIRA - SEĜO <br /> GUARDANAPOS - BUŜTUKOJ <br /> PRATOS - TELEROJ <br /> TALHERES - KUIRILARO <br /> COPOS - TASOJ <br /> SERPENTINA - SERPENTO <br /> CONFETE - KONFETI <br /> PANO - TUKO</p>"
 		break;
 		case 2:
 			conteudo = "<p>AMARELO - FLAVA <br /> LARANJA - ORANĜA <br /> CINZA - GRIZA <br /> VERMELHO - RUĜA <br /> MARROM - BRUNA <br /> AZUL ESCURO - MALLUMA BLUA <br /> VERDE - VERDA <br /> PRETO - NIGRA <br /> VERDE ESCURO - MALLUMA VERDO <br /> AZUL - BLUA <br /> BRANCO - BLANKA <br /> BEGE - BEIGE <br /> ROXO - PURPURA <br /> ROSA - ROZKOLORA <br /> VIOLETA - VIOLA</p>"
