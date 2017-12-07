@@ -125,7 +125,7 @@ function desenhadorPuzzleDois(){
 			cursor();
 			// text("GRATULOJN!",width/2,height/2);
 			background(178,255,154);
-			image(imagemGratulon,450,150);
+			image(imagemGratulon,proporcaoTela*28,proporcaoTelaH*23,proporcaoTela*55,proporcaoTelaH*55);
 		break;
 	}
 	if(baloesPegos==20){
