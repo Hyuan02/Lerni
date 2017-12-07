@@ -7,6 +7,8 @@ var controladorPuzzle=0;
 var imagemInicial;
 var imagemCapitulos;
 var imagemInstrucoes;
+var imagemCreditos;
+var imagemGratulon;
 var imagemCartao,conteudoCartao;
 var imagemFases1;
 var imagemPuzzles,imagemRevisao;
@@ -16,8 +18,9 @@ var ponteiro, imgPonteiro1, imgPonteiro2;
 var vetorDialogo,vetorImagens;
 var molduraDialogo,botaoDialogo1,botaoDIalogo2,balaoDialogo1,balaoDialogo2;
 var conteudoDialogo;
+var fonteTitulos;
+
 function preload(){
-	imagemInstrucoes = loadImage("imagens/menu-instrucoes.png");
 	imgCaixa = loadImage("imagens/caixa.png");
 	imgLista = loadImage("imagens/lista-objetos.png");
 	cenario = loadImage("imagens/imagensPuzzle1/cenario1.png");
@@ -56,11 +59,15 @@ function preload(){
 	imgflorI = loadImage("imagens/flores/petala9.png");
 	imgflorJ = loadImage("imagens/flores/petala10.png");
 	imagemInicial = loadImage("imagens/menu-principal.png");
+	imagemInstrucoes = loadImage("imagens/menu-instrucoes.png");
+	imagemCreditos = loadImage("imagens/menu-creditos.png");
 	imagemCapitulos = loadImage("imagens/menu-capitulos.png");
 	imagemFases1 = loadImage("imagens/menu-fases1.png");
 	imgPonteiro1 = loadImage("imagens/cursor1.png");
 	imgPonteiro2 = loadImage("imagens/cursor2.png");
 	imagemPuzzles = loadImage("imagens/menu-puzzles.png");
+	imagemGratulon = loadImage("imagens/gratulon.png");
+	fonteTitulos = loadFont('fonts/LuckiestGuy.ttf');
 }
 
 function setup(){
@@ -80,35 +87,42 @@ function interfaceInicial(){
 	image(imagemInicial,0,0,width,height);
 	opcaoInicial1 = createButton('INÍCIO');
 	opcaoInicial2 = createButton('INSTRUÇÕES');
-	opcaoInicial3 = createButton('CONFIGURAÇÕES');
-	opcaoInicial4 = createButton('CRÉDITOS');
+	opcaoInicial3 = createButton('CRÉDITOS');
 	opcaoInicial1.addClass('opcoesInicial');
 	opcaoInicial2.addClass('opcoesInicial');
 	opcaoInicial3.addClass('opcoesInicial');
-	opcaoInicial4.addClass('opcoesInicial');
 	opcaoInicial1.position(proporcaoTela*68,proporcaoTelaH*30);
 	opcaoInicial2.position(proporcaoTela*68,proporcaoTelaH*42);
 	opcaoInicial3.position(proporcaoTela*68,proporcaoTelaH*54);
-	opcaoInicial4.position(proporcaoTela*68,proporcaoTelaH*66);
 	opcaoInicial1.style('width',proporcaoTela*25+'px');
 	opcaoInicial1.style('height',proporcaoTelaH*8+'px');
 	opcaoInicial2.style('width',proporcaoTela*25+'px');
 	opcaoInicial2.style('height',proporcaoTelaH*8+'px');
 	opcaoInicial3.style('width',proporcaoTela*25+'px');
 	opcaoInicial3.style('height',proporcaoTelaH*8+'px');
-	opcaoInicial4.style('width',proporcaoTela*25+'px');
-	opcaoInicial4.style('height',proporcaoTelaH*8+'px');
 	opcaoInicial1.mousePressed(interfaceCapitulos);
 	opcaoInicial2.mousePressed(interfaceInstrucoes);
+	opcaoInicial3.mousePressed(interfaceCreditos);
 }
+
 function interfaceInstrucoes(){
 	removeElements();
 	image(imagemInstrucoes,0,0,width,height);
 	opcaoCapitulosVoltar = createButton('Voltar');
 	opcaoCapitulosVoltar.addClass('opcoesVoltarInst');
-	opcaoCapitulosVoltar.position(proporcaoTela*45,proporcaoTelaH*85);
+	opcaoCapitulosVoltar.position(proporcaoTela*13,proporcaoTelaH*85);
 	opcaoCapitulosVoltar.mousePressed(interfaceInicial);
 }
+
+function interfaceCreditos(){
+	removeElements();
+	image(imagemCreditos,0,0,width,height);
+	opcaoCapitulosVoltar = createButton('Voltar');
+	opcaoCapitulosVoltar.addClass('opcoesVoltarInst');
+	opcaoCapitulosVoltar.position(proporcaoTela*13,proporcaoTelaH*85);
+	opcaoCapitulosVoltar.mousePressed(interfaceInicial);
+}
+
 function interfaceCapitulos(){
 	removeElements();
 	background(255,255,255);
@@ -125,12 +139,12 @@ function interfaceCapitulos(){
 	opcaoCapitulos2.attribute('disabled','');
 	opcaoCapitulos3.attribute('disabled','');
 	opcaoCapitulos4.attribute('disabled','');
-	opcaoCapitulosVoltar.addClass('opcaoCapitulos');
+	opcaoCapitulosVoltar.addClass('opcaoVoltarCaps');
 	opcaoCapitulos1.position(proporcaoTela*20,proporcaoTelaH*25);
 	opcaoCapitulos2.position(proporcaoTela*20,proporcaoTelaH*40);
 	opcaoCapitulos3.position(proporcaoTela*60,proporcaoTelaH*25);
 	opcaoCapitulos4.position(proporcaoTela*60,proporcaoTelaH*40);
-	opcaoCapitulosVoltar.position(proporcaoTela*0.1,proporcaoTelaH*80);
+	opcaoCapitulosVoltar.position(proporcaoTela*1,proporcaoTelaH*80);
 	opcaoCapitulosVoltar.mousePressed(interfaceInicial);
 	opcaoCapitulos1.mousePressed(interfaceCapitulo1);
 }
@@ -169,9 +183,7 @@ function balaoAtividade1(){
 	imagemCartao = createImg("imagens/cartao-informativo-fase1.png");
 	imagemCartao.style("width",proporcaoTela*30+"px");
 	imagemCartao.style("height",proporcaoTelaH*40+"px");
-	conteudo = "<p>Lorem ipsum dolor sit amet,<br/> consectetur adipisicing elit, sed do eiusmod<br/>" +
-	"tempor incididunt ut labore <br/>et dolore magna aliqua. Ut enim ad minim veniam,<br/>" +
-	"quis nostrud exercitation ullamco laboris<br/> nisi ut aliquip ex ea commodo</p>";
+	conteudo = "<p style='font-size: 14px;'>Que bagunça! <br />Nessa fase temos um <br />quarto bastante bagunçado! <br />Preste bastante atenção, <br />pois objetos importantes estarão <br />escondidos pela bagunça. <br />Quando encontrar os objetos, <br />clique neles para <br />serem coletados!</p>";
 	imagemCartao.position(proporcaoTela*30,proporcaoTelaH*26);
 	conteudoCartao = createSpan(conteudo);
 	conteudoCartao.position(proporcaoTela*33,proporcaoTelaH*36);
@@ -182,9 +194,7 @@ function balaoAtividade2(){
 	imagemCartao = createImg("imagens/cartao-informativo-fase2.png");
 	imagemCartao.style("width",proporcaoTela*30+"px");
 	imagemCartao.style("height",proporcaoTelaH*40+"px");
-	conteudo = "<p>Lorem ipsum dolor sit amet,<br/> consectetur adipisicing elit, sed do eiusmod<br/>" +
-	"tempor incididunt ut labore <br/>et dolore magna aliqua. Ut enim ad minim veniam,<br/>" +
-	"quis nostrud exercitation ullamco laboris<br/> nisi ut aliquip ex ea commodo</p>";
+	conteudo = "<p>É hora de aprender o <br>nome das <b>CORES!</b><br> Clique nos balões <br>que correspondam <br> com o nome da cor <br></brq>em Esperanto.</p>";
 	imagemCartao.position(proporcaoTela*61,proporcaoTelaH*-3);
 	conteudoCartao = createSpan(conteudo);
 	conteudoCartao.position(proporcaoTela*64,proporcaoTelaH*2);
@@ -195,12 +205,10 @@ function balaoAtividade3(){
 	imagemCartao = createImg("imagens/cartao-informativo-fase3.png");
 	imagemCartao.style("width",proporcaoTela*30+"px");
 	imagemCartao.style("height",proporcaoTelaH*40+"px");
-	conteudo = "<p>Lorem ipsum dolor sit amet,<br/> consectetur adipisicing elit, sed do eiusmod<br/>" +
-	"tempor incididunt ut labore <br/>et dolore magna aliqua. Ut enim ad minim veniam,<br/>" +
-	"quis nostrud exercitation ullamco laboris<br/> nisi ut aliquip ex ea commodo</p>";
+	conteudo = "<p style='text-align: right'>Vamos aprender a <br>contar em Esperanto! <br>Clique nas flores <br >que tiverem o mesmo <br>número de pétalas que <br>aparecer na tela.</p>";
 	imagemCartao.position(proporcaoTela*45,proporcaoTelaH*20);
 	conteudoCartao = createSpan(conteudo);
-	conteudoCartao.position(proporcaoTela*49,proporcaoTelaH*22);
+	conteudoCartao.position(proporcaoTela*54,proporcaoTelaH*26);
 	conteudoCartao.addClass("conteudoBalao");
 }
 function balaoEncerrador(){
@@ -256,10 +264,10 @@ function desenhaInterfacePuzzle(){
 	image(imagemPuzzles,0,0,width,height);
 }
 function iniciaInterfacePuzzle(){
-	opcaoPuzzle1 = createButton('Revizio');
-	opcaoPuzzle1.position(proporcaoTela*0.2,proporcaoTelaH*10);
+	opcaoPuzzle1 = createButton("<i class='fa fa-lightbulb-o' aria-hidden='true'></i><br>Revizio");
+	opcaoPuzzle1.position(proporcaoTela*2,proporcaoTelaH*10);
 	opcaoPuzzleVoltar = createButton('Voltar');
-	opcaoPuzzleVoltar.position(proporcaoTela*0.2,proporcaoTelaH*80);
+	opcaoPuzzleVoltar.position(proporcaoTela*2,proporcaoTelaH*80);
 	opcaoPuzzle1.addClass('opcaoInterfacePuzzle');
 	opcaoPuzzleVoltar.addClass('opcaoInterfacePuzzle');
 	opcaoPuzzle1.addClass('opcaoInterfacePuzzle1');
@@ -297,8 +305,8 @@ function limpaSprites(){
 function dialogoAtividade1(){
 	removeElements();
 	background(0);
-	vetorDialogo=["Do i wanna know", "If this feeling flows both ways", "crawling back to you", "never thought of calling when you had a few", "cause i always do"];
-	vetorImagens=["imagens/imagensPuzzle1/camada01.png","imagens/imagensPuzzle1/camada02.png","imagens/imagensPuzzle1/camada03.png","imagens/imagensPuzzle1/camada04.png"];
+	vetorDialogo=["<p style='font-size:25px;'>Muito bem pessoal! <br />Não podemos montar uma boa festa <br />sem antes tivermos alguns itens. Que tal eu <br />ensinar a vocês como se fala o nome desses objetos <br /> enquanto procuramos por eles?</p>", "Certo!", "Ok né, não tenho outra escolha…"];
+	vetorImagens=["imagens/dialogos/lolo-animado.png","imagens/dialogos/floppy-animado.png","imagens/dialogos/jilo-tedio.png"];
 	let controladorDialogo=0;
 	var texto = vetorDialogo[controladorDialogo];
 	molduraDialogo = createImg("imagens/dialogos/moldura-novel.png");
@@ -307,8 +315,8 @@ function dialogoAtividade1(){
 	molduraDialogo.position(0,0);
 	var imagemDialogo = createImg(vetorImagens[controladorDialogo]); 
 	imagemDialogo.position(proporcaoTela*14,proporcaoTelaH*12);
-	imagemDialogo.style("width",proporcaoTela+"px");
-	imagemDialogo.style("height",proporcaoTelaH+"px"); 
+	// imagemDialogo.style("width",proporcaoTela+"px");
+	// imagemDialogo.style("height",proporcaoTelaH+"px"); 
 	balaoDialogo1 = createImg("imagens/dialogos/balao-novel1.png");
 	balaoDialogo1.position(proporcaoTela*25,proporcaoTelaH*52);
 	balaoDialogo1.style("width",proporcaoTela*60+"px");
@@ -325,8 +333,8 @@ function dialogoAtividade1(){
 			imagemDialogo.remove();
 			imagemDialogo = createImg(vetorImagens[controladorDialogo]);
 			imagemDialogo.position(proporcaoTela*14,proporcaoTelaH*12);
-			imagemDialogo.style("width",proporcaoTela*18+"px");
-			imagemDialogo.style("height",proporcaoTelaH*20+"px");  
+			// imagemDialogo.style("width",proporcaoTela*18+"px");
+			// imagemDialogo.style("height",proporcaoTelaH*20+"px");  
 			balaoDialogo1.remove();
 			balaoDialogo2.remove();
 			balaoDialogo1 = createImg("imagens/dialogos/balao-novel1.png");
@@ -338,8 +346,8 @@ function dialogoAtividade1(){
 			imagemDialogo.remove();
 			imagemDialogo = createImg(vetorImagens[controladorDialogo]);
 			imagemDialogo.position(proporcaoTela*14,proporcaoTelaH*12);
-			imagemDialogo.style("width",proporcaoTela*18+"px");
-			imagemDialogo.style("height",proporcaoTelaH*20+"px"); 
+			// imagemDialogo.style("width",proporcaoTela*18+"px");
+			// imagemDialogo.style("height",proporcaoTelaH*20+"px"); 
 			balaoDialogo2.remove();
 			balaoDialogo1.remove();
 			balaoDialogo2 = createImg("imagens/dialogos/balao-novel2.png");
@@ -362,8 +370,8 @@ function dialogoAtividade1(){
 			imagemDialogo.remove();
 			imagemDialogo = createImg(vetorImagens[controladorDialogo]);
 			imagemDialogo.position(proporcaoTela*14,proporcaoTelaH*12);
-			imagemDialogo.style("width",proporcaoTela*18+"px");
-			imagemDialogo.style("height",proporcaoTelaH*20+"px"); 
+			// imagemDialogo.style("width",proporcaoTela*18+"px");
+			// imagemDialogo.style("height",proporcaoTelaH*20+"px"); 
 			balaoDialogo2.remove();
 			balaoDialogo1 = createImg("imagens/dialogos/balao-novel1.png");
 			balaoDialogo1.position(proporcaoTela*25,proporcaoTelaH*52);
@@ -374,8 +382,8 @@ function dialogoAtividade1(){
 			imagemDialogo.remove();
 			imagemDialogo = createImg(vetorImagens[controladorDialogo]);
 			imagemDialogo.position(proporcaoTela*14,proporcaoTelaH*12);
-			imagemDialogo.style("width",proporcaoTela*18+"px");
-			imagemDialogo.style("height",proporcaoTelaH*20+"px"); 
+			// imagemDialogo.style("width",proporcaoTela*18+"px");
+			// imagemDialogo.style("height",proporcaoTelaH*20+"px"); 
 			balaoDialogo1.remove();
 			balaoDialogo2 = createImg("imagens/dialogos/balao-novel1.png");
 			balaoDialogo2.position(proporcaoTela*25,proporcaoTelaH*52);
@@ -403,8 +411,8 @@ function dialogoAtividade1(){
 function dialogoAtividade2(){
 	removeElements();
 	background(0);
-	vetorDialogo=["Do i wanna know", "If this feeling flows both ways", "crawling back to you", "never thought of calling when you had a few", "cause i always do"];
-	vetorImagens=["imagens/imagensPuzzle1/camada01.png","imagens/imagensPuzzle1/camada02.png","imagens/imagensPuzzle1/camada03.png","imagens/imagensPuzzle1/camada04.png"];
+	vetorDialogo=["Bom, vamos lá! Pra começar, vocês dois tem que <br /> aprender o nome das cores!", "Mas o nome das cores eu já sei! <br /> Amarelo, azul, vermelho...", "Mas Jiló, os nomes das cores são diferentes em <br /> Esperanto! A pronúncia é diferente, por exemplo! <br />A escrita também...", "Ah, é? Então tá. Como são, então?", "<p style='font-size:18px'>Vamos aprender algumas enquanto arrumamos a festa? <br />Vocês coletam os balões com as cores que eu vou dizer agora. <br />	Assim, começamos a preparar as coisas enquanto vocês aprendem! <br />O que acham?</p>", "<p style='text-transform: uppercase; font-size:50px; font-weight: bold;'>Pode ser!</p>"];
+	vetorImagens=["imagens/dialogos/lolo-animado.png","imagens/dialogos/jilo-estranhando.png","imagens/dialogos/floppy-normal.png","imagens/dialogos/jilo-normal.png","imagens/dialogos/lolo-animado.png","imagens/dialogos/jilo-floppy.png"];
 	let controladorDialogo=0;
 	var texto = vetorDialogo[controladorDialogo];
 	molduraDialogo = createImg("imagens/dialogos/moldura-novel.png");
@@ -413,8 +421,8 @@ function dialogoAtividade2(){
 	molduraDialogo.position(0,0);
 	var imagemDialogo = createImg(vetorImagens[controladorDialogo]); 
 	imagemDialogo.position(proporcaoTela*14,proporcaoTelaH*12);
-	imagemDialogo.style("width",proporcaoTela+"px");
-	imagemDialogo.style("height",proporcaoTelaH+"px"); 
+	// imagemDialogo.style("width",proporcaoTela+"px");
+	// imagemDialogo.style("height",proporcaoTelaH+"px"); 
 	balaoDialogo1 = createImg("imagens/dialogos/balao-novel1.png");
 	balaoDialogo1.position(proporcaoTela*25,proporcaoTelaH*52);
 	balaoDialogo1.style("width",proporcaoTela*60+"px");
@@ -422,7 +430,7 @@ function dialogoAtividade2(){
 	balaoDialogo2 = createImg("imagens/dialogos/balao-novel2.png");
 	balaoDialogo2.hide();
 	conteudoDialogo = createSpan(texto);
-	conteudoDialogo.position(proporcaoTela*35,proporcaoTelaH*54);
+	conteudoDialogo.position(proporcaoTela*28,proporcaoTelaH*54);
 	conteudoDialogo.addClass('conteudoDialogo');
 	function incrementaDialogo(){
 		controladorDialogo++;
@@ -431,8 +439,8 @@ function dialogoAtividade2(){
 			imagemDialogo.remove();
 			imagemDialogo = createImg(vetorImagens[controladorDialogo]);
 			imagemDialogo.position(proporcaoTela*14,proporcaoTelaH*12);
-			imagemDialogo.style("width",proporcaoTela*18+"px");
-			imagemDialogo.style("height",proporcaoTelaH*20+"px");  
+			// imagemDialogo.style("width",proporcaoTela*18+"px");
+			// imagemDialogo.style("height",proporcaoTelaH*20+"px");  
 			balaoDialogo1.remove();
 			balaoDialogo2.remove();
 			balaoDialogo1 = createImg("imagens/dialogos/balao-novel1.png");
@@ -444,8 +452,8 @@ function dialogoAtividade2(){
 			imagemDialogo.remove();
 			imagemDialogo = createImg(vetorImagens[controladorDialogo]);
 			imagemDialogo.position(proporcaoTela*14,proporcaoTelaH*12);
-			imagemDialogo.style("width",proporcaoTela*18+"px");
-			imagemDialogo.style("height",proporcaoTelaH*20+"px"); 
+			// imagemDialogo.style("width",proporcaoTela*18+"px");
+			// imagemDialogo.style("height",proporcaoTelaH*20+"px"); 
 			balaoDialogo2.remove();
 			balaoDialogo1.remove();
 			balaoDialogo2 = createImg("imagens/dialogos/balao-novel2.png");
@@ -468,8 +476,8 @@ function dialogoAtividade2(){
 			imagemDialogo.remove();
 			imagemDialogo = createImg(vetorImagens[controladorDialogo]);
 			imagemDialogo.position(proporcaoTela*14,proporcaoTelaH*12);
-			imagemDialogo.style("width",proporcaoTela*18+"px");
-			imagemDialogo.style("height",proporcaoTelaH*20+"px"); 
+			// imagemDialogo.style("width",proporcaoTela*18+"px");
+			// imagemDialogo.style("height",proporcaoTelaH*20+"px"); 
 			balaoDialogo2.remove();
 			balaoDialogo1 = createImg("imagens/dialogos/balao-novel1.png");
 			balaoDialogo1.position(proporcaoTela*25,proporcaoTelaH*52);
@@ -480,8 +488,8 @@ function dialogoAtividade2(){
 			imagemDialogo.remove();
 			imagemDialogo = createImg(vetorImagens[controladorDialogo]);
 			imagemDialogo.position(proporcaoTela*14,proporcaoTelaH*12);
-			imagemDialogo.style("width",proporcaoTela*18+"px");
-			imagemDialogo.style("height",proporcaoTelaH*20+"px"); 
+			// imagemDialogo.style("width",proporcaoTela*18+"px");
+			// imagemDialogo.style("height",proporcaoTelaH*20+"px"); 
 			balaoDialogo1.remove();
 			balaoDialogo2 = createImg("imagens/dialogos/balao-novel1.png");
 			balaoDialogo2.position(proporcaoTela*25,proporcaoTelaH*52);
@@ -509,8 +517,8 @@ function dialogoAtividade2(){
 function dialogoAtividade3(){
 	removeElements();
 	background(0);
-	vetorDialogo=["Do i wanna know", "If this feeling flows both ways", "crawling back to you", "never thought of calling when you had a few", "cause i always do"];
-	vetorImagens=["imagens/imagensPuzzle1/camada01.png","imagens/imagensPuzzle1/camada02.png","imagens/imagensPuzzle1/camada03.png","imagens/imagensPuzzle1/camada04.png"];
+	vetorDialogo=["<p style='font-size: 18px;'>Não podemos organizar uma festa sem antes conhecermos os números <br /> em Esperanto. Se não, como vamos saber quanto pratos <br /> e guardanapos devemos arranjar? Ou informar para os convidados <br /> quantos pedaços de bolo poderão receber?  <br /> Ou como dizer quanto de chocolate você <br /> colocou para que o bolo ficasse delicioso!</p>", "Verdade, faz muito sentido… <br />Eu não achei que ia precisar pra tanta coisa!", "Não seria mais fácil escrever <br />os números num papel?", "<p style='font-size:50px; font-weight: bold;'>JILÓ!</p>", "Tá bom então.", "<p style='font-size: 18px;'>Muito bem, vou lhes ensinar os números! <br />Para isso, vocês terão que coletar flores com o número de pétalas <br />correspondente ao número que eu disser. <br />Assim também conseguimos decorar nossa festa <br />e deixá-la ainda mais bonita!</p>"];
+	vetorImagens=["imagens/dialogos/lolo-serio.png","imagens/dialogos/floppy-animado.png","imagens/dialogos/jilo-tedio.png","imagens/dialogos/floppy-zangado.png","imagens/dialogos/jilo-raiva.png","imagens/dialogos/lolo-normal.png"];
 	let controladorDialogo=0;
 	var texto = vetorDialogo[controladorDialogo];
 	molduraDialogo = createImg("imagens/dialogos/moldura-novel.png");
@@ -519,8 +527,8 @@ function dialogoAtividade3(){
 	molduraDialogo.position(0,0);
 	var imagemDialogo = createImg(vetorImagens[controladorDialogo]); 
 	imagemDialogo.position(proporcaoTela*14,proporcaoTelaH*12);
-	imagemDialogo.style("width",proporcaoTela+"px");
-	imagemDialogo.style("height",proporcaoTelaH+"px"); 
+	// imagemDialogo.style("width",proporcaoTela+"px");
+	// imagemDialogo.style("height",proporcaoTelaH+"px"); 
 	balaoDialogo1 = createImg("imagens/dialogos/balao-novel1.png");
 	balaoDialogo1.position(proporcaoTela*25,proporcaoTelaH*52);
 	balaoDialogo1.style("width",proporcaoTela*60+"px");
@@ -537,8 +545,8 @@ function dialogoAtividade3(){
 			imagemDialogo.remove();
 			imagemDialogo = createImg(vetorImagens[controladorDialogo]);
 			imagemDialogo.position(proporcaoTela*14,proporcaoTelaH*12);
-			imagemDialogo.style("width",proporcaoTela*18+"px");
-			imagemDialogo.style("height",proporcaoTelaH*20+"px");  
+			// imagemDialogo.style("width",proporcaoTela*18+"px");
+			// imagemDialogo.style("height",proporcaoTelaH*20+"px");  
 			balaoDialogo1.remove();
 			balaoDialogo2.remove();
 			balaoDialogo1 = createImg("imagens/dialogos/balao-novel1.png");
@@ -550,8 +558,8 @@ function dialogoAtividade3(){
 			imagemDialogo.remove();
 			imagemDialogo = createImg(vetorImagens[controladorDialogo]);
 			imagemDialogo.position(proporcaoTela*14,proporcaoTelaH*12);
-			imagemDialogo.style("width",proporcaoTela*18+"px");
-			imagemDialogo.style("height",proporcaoTelaH*20+"px"); 
+			// imagemDialogo.style("width",proporcaoTela*18+"px");
+			// imagemDialogo.style("height",proporcaoTelaH*20+"px"); 
 			balaoDialogo2.remove();
 			balaoDialogo1.remove();
 			balaoDialogo2 = createImg("imagens/dialogos/balao-novel2.png");
@@ -574,8 +582,8 @@ function dialogoAtividade3(){
 			imagemDialogo.remove();
 			imagemDialogo = createImg(vetorImagens[controladorDialogo]);
 			imagemDialogo.position(proporcaoTela*14,proporcaoTelaH*12);
-			imagemDialogo.style("width",proporcaoTela*18+"px");
-			imagemDialogo.style("height",proporcaoTelaH*20+"px"); 
+			// imagemDialogo.style("width",proporcaoTela*18+"px");
+			// imagemDialogo.style("height",proporcaoTelaH*20+"px"); 
 			balaoDialogo2.remove();
 			balaoDialogo1 = createImg("imagens/dialogos/balao-novel1.png");
 			balaoDialogo1.position(proporcaoTela*25,proporcaoTelaH*52);
@@ -586,8 +594,8 @@ function dialogoAtividade3(){
 			imagemDialogo.remove();
 			imagemDialogo = createImg(vetorImagens[controladorDialogo]);
 			imagemDialogo.position(proporcaoTela*14,proporcaoTelaH*12);
-			imagemDialogo.style("width",proporcaoTela*18+"px");
-			imagemDialogo.style("height",proporcaoTelaH*20+"px"); 
+			// imagemDialogo.style("width",proporcaoTela*18+"px");
+			// imagemDialogo.style("height",proporcaoTelaH*20+"px"); 
 			balaoDialogo1.remove();
 			balaoDialogo2 = createImg("imagens/dialogos/balao-novel1.png");
 			balaoDialogo2.position(proporcaoTela*25,proporcaoTelaH*52);
@@ -635,28 +643,13 @@ function interfaceRevisao(){
 	let conteudo;
 	switch(controladorPuzzle){
 		case 1:
-			conteudo = "<p>Lorem ipsum dolor sit amet,<br/> consectetur adipisicing elit, sed do eiusmod<br/>" +
-				"tempor incididunt ut labore <br/>et dolore magna aliqua. Ut enim ad minim veniam,<br/>" +
-				"quis nostrud exercitation ullamco laboris<br/> nisi ut aliquip ex ea commodo<br/>" +
-				"consequat. Duis aute irure dolor in reprehenderit<br/> in voluptate velit esse<br/>" +
-				"cillum dolore eu fugiat nulla pariatur<br/>. Excepteur sint occaecat cupidatat non<br/>" +
-				"proident, sunt in culpa qui officia deserunt<br/> mollit anim id est laborum.</p>"
+			conteudo = "<p>CHAPÉU DE FESTA - PARTO ĈAPELO <br> BARBANTE - KORDO <br /> LONA - TOLO <br /> TINTA - INKO <br /> PINCEL - BROSO <br /> CADEIRA - SEĜO <br /> GUARDANAPOS - BUŜTUKOJ <br /> PRATOS - TELEROJ <br /> TALHERES - KUIRILARO <br /> COPOS - TASOJ <br /> SERPENTINA - SERPENTO <br /> CONFETE - KONFETI <br /> MESA - TABLO <br /> PANO - TUKO</p>"
 		break;
 		case 2:
-			conteudo = "<p>Lorem ipsum dolor sit amet,<br/> consectetur adipisicing elit, sed do eiusmod<br/>" +
-				"tempor incididunt ut labore <br/>et dolore magna aliqua. Ut enim ad minim veniam,<br/>" +
-				"quis nostrud exercitation ullamco laboris<br/> nisi ut aliquip ex ea commodo<br/>" +
-				"consequat. Duis aute irure dolor in reprehenderit<br/> in voluptate velit esse<br/>" +
-				"cillum dolore eu fugiat nulla pariatur<br/>. Excepteur sint occaecat cupidatat non<br/>" +
-				"proident, sunt in culpa qui officia deserunt<br/> mollit anim id est laborum.</p>"
+			conteudo = "<p>AMARELO - FLAVA <br /> LARANJA - ORANĜA <br /> CINZA - GRIZA <br /> VERMELHO - RUĜA <br /> MARROM - BRUNA <br /> AZUL ESCURO - MALLUMA BLUA <br /> VERDE - VERDA <br /> PRETO - NIGRA <br /> VERDE ESCURO - MALLUMA VERDO <br /> AZUL - BLUA <br /> BRANCO - BLANKA <br /> BEGE - BEIGE <br /> ROXO - PURPURA <br /> ROSA - ROZKOLORA <br /> VIOLETA - VIOLA</p>"
 		break;
 		case 3:
-			conteudo = "<p>Lorem ipsum dolor sit amet,<br/> consectetur adipisicing elit, sed do eiusmod<br/>" +
-				"tempor incididunt ut labore <br/>et dolore magna aliqua. Ut enim ad minim veniam,<br/>" +
-				"quis nostrud exercitation ullamco laboris<br/> nisi ut aliquip ex ea commodo<br/>" +
-				"consequat. Duis aute irure dolor in reprehenderit<br/> in voluptate velit esse<br/>" +
-				"cillum dolore eu fugiat nulla pariatur<br/>. Excepteur sint occaecat cupidatat non<br/>" +
-				"proident, sunt in culpa qui officia deserunt<br/> mollit anim id est laborum.</p>"
+			conteudo = "<p>1 - UNU <br /> 2 - DU <br /> 3 - TRI <br /> 4 - KVAR <br /> 5 - KVIN <br /> 6 - SES <br /> 7 - SEP <br /> 8 - OK <br /> 9 - NAŬ <br /> 10 - DEK</p><p>Números acima de 10: <br />11 - DEK UNU | 12 - DEK DU... <br />20 - DUDEK | 30 - TRIDEK | 40 - KVARDDEK <br />100 - CENT</p>"
 		break;
 	}
 	conteudoRevisao = createSpan(conteudo);

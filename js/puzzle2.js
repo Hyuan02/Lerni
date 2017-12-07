@@ -1,4 +1,5 @@
-var imgBalaoA, imgBalaoB, imgBalaoC, imgBalaoD, imgBalaoE;
+var imgBalaoA, imgBalaoB, imgBalaoC, imgBalaoD, imgBalaoE, imgBalaoF, imgBalaoG;
+var imagemGratulon;
 var vetorSpriteBaloes;
 var corAtual;
 var baloes;
@@ -6,6 +7,7 @@ var estado=1;
 var tempoBalao=0; 
 var baloesPegos=0;
 var velocidadeY=-2.0;
+var fonteTitulos;
 
 function entregaImagem(numero){
 	switch(numero){
@@ -69,7 +71,7 @@ function criaBalao(){
 	balao.onMousePressed = function(){
 		if(balao.tipo==corAtual){
 			balao.remove();
-			corAtual=Math.floor(random(4));
+			corAtual=Math.floor(random(6));
 			baloesPegos++;
 		}
 	}
@@ -110,14 +112,18 @@ function desenhadorPuzzleDois(){
 			clear();
 			incrementaTempo(baloesPegos);
 			drawSprites();
+			textFont(fonteTitulos);
 			text(entregaPalavra(corAtual),proporcaoTela*15,proporcaoTelaH*16);
+			textSize(20);
+			fill(81,160,40);
 			text("Balões Pegos 20/ " + baloesPegos,proporcaoTela*15,proporcaoTelaH*20);
 		break;
 		case 2:
 			clear();
-			textSize(70);
+			// textSize(70);
 			cursor();
-			text("GRATULOJN!",width/2,height/2);
+			// text("GRATULOJN!",width/2,height/2);
+			image(imagemGratulon,450,150);
 		break;
 	}
 	if(baloesPegos==20){

@@ -1,4 +1,5 @@
 @import url('../fonts/stylesheet.css');
+@import url('../fonts/montserrat/stylesheet.css');
 
 canvas{
 	margin-top:-1%;
@@ -12,11 +13,17 @@ canvas{
 	color:white;
 	border-radius:10px;
 	border-style:none;
+	-o-transition:.2s;
+	-ms-transition:.2s;
+	-moz-transition:.2s;
+	-webkit-transition:.2s;
+	transition:.2s;
 }
 
 .opcoesInicial:hover {
 	background-color: green;
-	border: 3px solid #00B24A;
+	-webkit-transform: scale(1.1);
+	transform: scale(1.1);
 }
 
 .opcaoCapitulos, .opcaoAtividades {
@@ -25,9 +32,30 @@ canvas{
 	background:none;
 	border-style:none;
 	-webkit-transition-duration: 0.3s;
-  	transition-duration: 0.3s;
-  	-webkit-transition-property: transform;
-  	transition-property: transform;
+	transition-duration: 0.3s;
+	-webkit-transition-property: transform;
+	transition-property: transform;
+}
+
+.opcaoVoltarCaps {
+	font-family: 'luckiest_guyregular';
+	font-size:1.7vw;
+	background-color: #f85145;
+	color:white;
+	border-radius:10px;
+	padding: 10px;
+	border-style:none;
+	-o-transition:.2s;
+	-ms-transition:.2s;
+	-moz-transition:.2s;
+	-webkit-transition:.2s;
+	transition:.2s;
+}
+
+.opcaoVoltarCaps:hover {
+	background-color: green;
+	-webkit-transform: scale(1.1);
+	transform: scale(1.1);
 }
 
 .opcaoAtividadesFase {
@@ -37,9 +65,9 @@ canvas{
 	color: #1b5e20;
 	border-style:none;
 	-webkit-transition-duration: 0.3s;
-  	transition-duration: 0.3s;
-  	-webkit-transition-property: transform;
-  	transition-property: transform;
+	transition-duration: 0.3s;
+	-webkit-transition-property: transform;
+	transition-property: transform;
 }
 
 .opcaoAtividadesVoltar {
@@ -47,48 +75,68 @@ canvas{
 	background:none;
 	border-style:none;
 	-ms-transform: rotate(-16deg); /* IE 9 */
-    -webkit-transform: rotate(-16deg); /* Chrome, Safari, Opera */
-    -moz-transform: rotate(-16deg);
-    transform: rotate(-16deg);
-    font-size: 4.5vw;
-    color: #3e2723;
-    -webkit-transition-duration: 0.3s;
-  	transition-duration: 0.3s;
-  	-webkit-transition-property: transform;
-  	transition-property: transform;
+	-webkit-transform: rotate(-16deg); /* Chrome, Safari, Opera */
+	-moz-transform: rotate(-16deg);
+	transform: rotate(-16deg);
+	font-size: 4.5vw;
+	color: #3e2723;
+	-webkit-transition-duration: 0.3s;
+	transition-duration: 0.3s;
+	-webkit-transition-property: transform;
+	transition-property: transform;
 }
 
 .opcaoCapitulos:hover, .opcaoAtividades:hover{
 	color:#ff7043;
 	-webkit-transform: scale(1.1);
-  	transform: scale(1.1);
+	transform: scale(1.1);
 }
 
 .opcaoAtividadesFase:hover {
 	color:#fbe9e7;
 	-webkit-transform: scale(1.1);
-  	transform: scale(1.1);
+	transform: scale(1.1);
 }
 
 .opcaoAtividadesVoltar:hover {
 	color: #fbe9e7;
 	-webkit-transform: scale(1.1) rotate(-16deg);
-  	transform: scale(1.1) rotate(-16deg);
-  	-ms-transform: scale(1.1) rotate(-16deg); /* IE 9 */
-    -moz-transform: scale(1.1) rotate(-16deg);
+	transform: scale(1.1) rotate(-16deg);
+	-ms-transform: scale(1.1) rotate(-16deg); /* IE 9 */
+	-moz-transform: scale(1.1) rotate(-16deg);
 }
 .opcaoInterfacePuzzle{
-	background:none;
+	background-color: #fff;
 	border:none;
 	font-family:'luckiest_guyregular';
-	font-size:3vw;
+	font-size:2vw;
+	border-radius: 6px;
+	-o-transition:.2s;
+	-ms-transition:.2s;
+	-moz-transition:.2s;
+	-webkit-transition:.2s;
+	transition:.2s;
 }
 .opcaoInterfacePuzzleVoltar{
 	color:#01689a;
 }
+
+.opcaoInterfacePuzzleVoltar:hover{
+	-webkit-transform: scale(1.1);
+	transform: scale(1.1);
+}
+
 .opcaoInterfacePuzzle1{
 	color:#ffeb94;
+	background-color: #438028;
+	padding: 10px;
 }
+
+.opcaoInterfacePuzzle1:hover{
+	-webkit-transform: scale(1.1);
+	transform: scale(1.1);
+}
+
 .revisaoFechar{
 	background-color:#ffccc5;
 	color:#cb1f05;
@@ -103,7 +151,7 @@ canvas{
 	font-size:4vw;
 }
 .conteudoRevisao{
-	font-family:'kidsregular';
+	font-family:'Montserrat';
 	font-size:1.5vw;
 }
 
@@ -114,17 +162,27 @@ canvas{
 	color:white;
 	border-radius:10px;
 	border-style:none;
+	padding: 10px;
+	-o-transition:.2s;
+	-ms-transition:.2s;
+	-moz-transition:.2s;
+	-webkit-transition:.2s;
+	transition:.2s;
 }
 
-.opcoesVoltarInst {
-	
+.opcoesVoltarInst:hover {
+	background-color: green;
+	-webkit-transform: scale(1.1);
+	transform: scale(1.1);
 }
+
 .conteudoBalao{
-	font-family:'kidsregular';
-	font-size:1vw;
+	font-family:'Montserrat';
+	font-weight: 600;
+	font-size:1.4vw;
 }
 .conteudoDialogo{
-	font-family:'kidsregular';
+	font-family:'Montserrat';
 	font-size:2vw;
 }
 .botaoDialogo1{
@@ -134,4 +192,10 @@ canvas{
 .botaoDialogo2{
 	background-color:#ffec90;
 	border:none;
+}
+
+/*FASES*/
+
+.optionsFase {
+	text-transform: uppercase;
 }

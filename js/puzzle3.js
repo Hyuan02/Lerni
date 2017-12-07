@@ -1,10 +1,12 @@
-var imgflorA, imgflorB, imgflorC, imgflorD, imgflorE;
+var imgflorA, imgflorB, imgflorC, imgflorD, imgflorE, imgflorF, imgflorG, imgflorH, imgflorI, imgflorJ;
+var imagemGratulon;
 var corAtual;
 var flores;
 var estado=1;
 var tempoFlor=0; 
 var FloresPegas=0;
 var velocidadeX=-2.0;
+var fonteTitulos;
 
 function entregaImagemPuzzleTres(numero){
 	switch(numero){
@@ -52,10 +54,10 @@ function entregaPalavraPuzzle3(numero){
 			return "tri";
 		break;
 		case 3:
-			return "kvard";
+			return "kvar";
 		break;
 		case 4:
-			return "kvi";
+			return "kvin";
 		break;
 		case 5:
 			return "ses";
@@ -70,7 +72,7 @@ function entregaPalavraPuzzle3(numero){
 			return "naŭ";
 		break;
 		case 9:
-			return "kvard";
+			return "dek";
 		break;
 	}
 }
@@ -86,7 +88,7 @@ function criaFlor(){
 	flor.onMousePressed = function(){
 		if(flor.tipo==corAtual){
 			flor.remove();
-			corAtual=Math.floor(random(4));
+			corAtual=Math.floor(random(10));
 			FloresPegas++;
 		}
 	}
@@ -128,13 +130,17 @@ function desenhadorPuzzleTres(){
 			clear();
 			incrementaTempoPuzzle3(FloresPegas);
 			drawSprites();
+			textFont(fonteTitulos);
 			text(entregaPalavraPuzzle3(corAtual),proporcaoTela*15,proporcaoTelaH*16);
-			text("Flores Pegos 20/ " + FloresPegas,proporcaoTela*15,proporcaoTelaH*20);
+			textSize(20);
+			fill(81,160,40);
+			text("Flores pegas 20/ " + FloresPegas,proporcaoTela*15,proporcaoTelaH*20);
 		break;
 		case 2:
 			clear();
-			textSize(70);
-			text("GRATULOJN!",width/2,height/2);
+			// textSize(70);
+			// text("GRATULOJN!",width/2,height/2);
+			image(imagemGratulon,450,150);
 		break;
 	}
 	if(FloresPegas==20){

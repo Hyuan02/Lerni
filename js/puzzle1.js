@@ -5,6 +5,7 @@ var item01,item02,item03,item04,item05,item06,item07,item08,item09,item10,item11
 var escala,escala2;
 var itens, listaItens;
 var caixa,imgCaixa;
+var imagemGratulon;
 function retornaEscala(resolucao){
 	let decremento = resolucao - 14*proporcaoTela;
 	return decremento/1920;
@@ -63,8 +64,9 @@ function desenhadorPuzzleUm(){
 	}
 	if(itens.length<1){
 		clear();
-		textSize(70);
-		text("GRATULOJN!",width/2,height/2);
+		// textSize(70);
+		// text("GRATULOJN!",width/2,height/2);
+		image(imagemGratulon,450,150);
 	}
 }
 function criaObjetos(){
