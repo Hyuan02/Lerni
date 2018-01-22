@@ -22,7 +22,7 @@ var fonteTitulos;
 
 function preload(){
 	imgCaixa = loadImage("imagens/caixa.png");
-	imgLista = loadImage("imagens/lista-objetos.png");
+	imgLista = loadImage("imagens/lista2.png");
 	cenario = loadImage("imagens/imagensPuzzle1/cenario1.png");
 	camada01 = loadImage("imagens/imagensPuzzle1/camada01.png");
 	camada02 = loadImage("imagens/imagensPuzzle1/camada02.png");
@@ -68,10 +68,11 @@ function preload(){
 	imagemPuzzles = loadImage("imagens/menu-puzzles.png");
 	imagemGratulon = loadImage("imagens/gratulon.png");
 	fonteTitulos = loadFont('fonts/LuckiestGuy.ttf');
+	fonteLista = loadFont('fonts/Montserrat-Black.ttf');
 }
 
 function setup(){
-	createCanvas(displayWidth,displayHeight);
+	createCanvas(windowWidth,windowHeight);
 	proporcaoTela = width/100;
 	proporcaoTelaH = height/100;
 	interfaceInicial();
@@ -208,7 +209,7 @@ function balaoAtividade3(){
 	conteudo = "<p style='text-align: right'>Vamos aprender a <br>contar em Esperanto! <br>Clique nas flores <br >que tiverem o mesmo <br>número de pétalas que <br>aparecer na tela.</p>";
 	imagemCartao.position(proporcaoTela*45,proporcaoTelaH*20);
 	conteudoCartao = createSpan(conteudo);
-	conteudoCartao.position(proporcaoTela*57,proporcaoTelaH*26);
+	conteudoCartao.position(proporcaoTela*54,proporcaoTelaH*26);
 	conteudoCartao.addClass("conteudoBalao");
 }
 function balaoEncerrador(){
@@ -329,7 +330,7 @@ function dialogoAtividade1(){
 	function incrementaDialogo(){
 		controladorDialogo++;
 		conteudoDialogo.remove();
-		if(controladorDialogo == 0 || controladorDialogo == 2 || controladorDialogo == 3 || controladorDialogo == 5){
+		if(controladorDialogo == 2 || controladorDialogo == 3 || controladorDialogo == 5){
 			imagemDialogo.remove();
 			imagemDialogo = createImg(vetorImagens[controladorDialogo]);
 			imagemDialogo.position(proporcaoTela*14,proporcaoTelaH*12);
@@ -366,7 +367,7 @@ function dialogoAtividade1(){
 		if(controladorDialogo>0)
 			controladorDialogo--;
 		conteudoDialogo.remove();
-		if(controladorDialogo == 0 || controladorDialogo == 1 || controladorDialogo == 3 || controladorDialogo == 5){
+		if(controladorDialogo == 1 || controladorDialogo == 3 || controladorDialogo == 5){
 			imagemDialogo.remove();
 			imagemDialogo = createImg(vetorImagens[controladorDialogo]);
 			imagemDialogo.position(proporcaoTela*14,proporcaoTelaH*12);
@@ -472,7 +473,7 @@ function dialogoAtividade2(){
 		if(controladorDialogo>0)
 			controladorDialogo--;
 		conteudoDialogo.remove();
-		if(controladorDialogo == 0 || controladorDialogo == 1 || controladorDialogo == 2 || controladorDialogo == 3 || controladorDialogo == 5){
+		if(controladorDialogo == 1 || controladorDialogo == 3 || controladorDialogo == 5){
 			imagemDialogo.remove();
 			imagemDialogo = createImg(vetorImagens[controladorDialogo]);
 			imagemDialogo.position(proporcaoTela*14,proporcaoTelaH*12);
@@ -578,7 +579,7 @@ function dialogoAtividade3(){
 		if(controladorDialogo>0)
 			controladorDialogo--;
 		conteudoDialogo.remove();
-		if(controladorDialogo == 1 || controladorDialogo == 2 || controladorDialogo == 3 || controladorDialogo == 5){
+		if(controladorDialogo == 1 || controladorDialogo == 3 || controladorDialogo == 5){
 			imagemDialogo.remove();
 			imagemDialogo = createImg(vetorImagens[controladorDialogo]);
 			imagemDialogo.position(proporcaoTela*14,proporcaoTelaH*12);
@@ -590,7 +591,7 @@ function dialogoAtividade3(){
 			balaoDialogo1.style("width",proporcaoTela*60+"px");
 			balaoDialogo1.style("height",proporcaoTelaH*35+"px");
 		}
-		else if(controladorDialogo == 0 || controladorDialogo==1 || controladorDialogo == 4 || controladorDialogo == 6){
+		else if(controladorDialogo==1 || controladorDialogo == 4 || controladorDialogo == 6){
 			imagemDialogo.remove();
 			imagemDialogo = createImg(vetorImagens[controladorDialogo]);
 			imagemDialogo.position(proporcaoTela*14,proporcaoTelaH*12);

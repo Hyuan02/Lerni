@@ -62,12 +62,13 @@ function desenhadorPuzzleUm(){
 		checaMovimentacao(itens[i]);
 		checaColisao(itens[i]);
 	}
+	desenhaPalavras();
 	if(itens.length<1){
 		clear();
 		// textSize(70);
 		// text("GRATULOJN!",width/2,height/2);
 		background(178,255,154);
-		image(imagemGratulon,proporcaoTela*28,proporcaoTelaH*23,proporcaoTela*55,proporcaoTelaH*55);
+		image(imagemGratulon,450,150);
 	}
 }
 function criaObjetos(){
@@ -150,4 +151,60 @@ function criaObjetos(){
 	listaItens = createSprite(proporcaoTela*25,proporcaoTelaH*77);
 	listaItens.addImage("padrao",imgLista);
 	listaItens.scale = escala/2;
+}
+function desenhaPalavras(){
+	textFont(fonteLista);
+	textSize(proporcaoTela);
+	if(!item01.removed)
+		text("- Serpento",proporcaoTela*28,proporcaoTelaH*82);
+	else
+		text("-  ̶S̶e̶r̶p̶e̶n̶t̶o̶",proporcaoTela*28,proporcaoTelaH*82);
+
+	if(!item02.removed)
+		text("- Partio Ĉapelo",proporcaoTela*15,proporcaoTelaH*67);
+	else
+		text("-  ̶P̶a̶r̶t̶i̶o̶ ̶Ĉ̶a̶p̶e̶l̶o̶",proporcaoTela*15,proporcaoTelaH*67);
+
+	if(!item03.removed)
+		text("- Tasoj",proporcaoTela*23,proporcaoTelaH*81);
+	else
+		text("-  ̶T̶a̶s̶o̶j̶",proporcaoTela*23,proporcaoTelaH*81);
+
+	if(!item04.removed)
+		text("- Kuililaro",proporcaoTela*16,proporcaoTelaH*83);
+	else
+		text("-  ̶K̶u̶i̶l̶i̶l̶a̶r̶o̶",proporcaoTela*16,proporcaoTelaH*83);
+	if(!item05.removed)
+		text("- Konfeti",proporcaoTela*20,proporcaoTelaH*86);
+	else
+		text("-  ̶K̶o̶n̶f̶e̶t̶i̶",proporcaoTela*20,proporcaoTelaH*86);
+	if(!item06.removed)
+		text("- Tuko",proporcaoTela*27,proporcaoTelaH*86);
+	else
+		text("-   ̶T̶u̶k̶o̶",proporcaoTela*27,proporcaoTelaH*86);
+	if(!item07.removed)
+		text("- Broso",proporcaoTela*28,proporcaoTelaH*74);
+	else
+		text("-   ̶B̶r̶o̶s̶o̶",proporcaoTela*28,proporcaoTelaH*74);
+	if(!item08.removed)
+		text("- Sego",proporcaoTela*16,proporcaoTelaH*78);
+	else
+		text("-   ̶S̶e̶g̶o̶",proporcaoTela*16,proporcaoTelaH*78);
+	if(!item09.removed)
+		text("- Teleroj",proporcaoTela*27,proporcaoTelaH*78);
+	else
+		text("-   ̶T̶e̶l̶e̶r̶o̶j̶",proporcaoTela*27,proporcaoTelaH*78);
+	if(!item10.removed)
+		text("- Kordo",proporcaoTela*25,proporcaoTelaH*68);
+	else
+		text("-   ̶K̶o̶r̶d̶o̶",proporcaoTela*25,proporcaoTelaH*68);
+	if(!item11.removed)
+		text("- Inko",proporcaoTela*22,proporcaoTelaH*73);
+	else
+		text("-   ̶I̶n̶k̶o̶",proporcaoTela*22,proporcaoTelaH*73);
+	if(!item12.removed)
+		text("- Bustukoj",proporcaoTela*21,proporcaoTelaH*77);
+	else
+		text("-   ̶B̶u̶s̶t̶u̶k̶o̶j̶",proporcaoTela*21,proporcaoTelaH*77);
+	
 }
